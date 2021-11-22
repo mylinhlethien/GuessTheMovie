@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GuessTheMovie</string>
+    <string name="guess_the_movie">Guess The Movie</string>
 </resources>
