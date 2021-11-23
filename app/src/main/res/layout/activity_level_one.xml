@@ -10,22 +10,73 @@
     android:layout_gravity="bottom"
     tools:context=".LevelOneActivity">
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="130dp"
+            android:contentDescription="Image"
+            tools:srcCompat="@tools:sample/avatars" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/actorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="Actor name: "
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/characterName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="Character name: "
+            />
+
+    </LinearLayout>
+
 
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:baselineAligned="false">
 
             <Button
                 android:id="@+id/Answer1button"
-                android:layout_width="90dp"
+                android:layout_width="0dp"
                 android:layout_height="90dp"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:gravity="left|center_vertical"
                 android:text="Harry Potter" />
+
+        <!--    android:maxWidth="90dp"-->
 
             <Button
                 android:id="@+id/Answer2button"
-                android:layout_width="90dp"
+                android:layout_width="0dp"
                 android:layout_height="90dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
@@ -37,7 +88,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:baselineAligned="false">
 
         <Button
             android:id="@+id/Answer3button"
@@ -45,7 +97,7 @@
             android:layout_height="90dp"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:text="jabcnjzbdjabdb xiojdnqdipadnc " />
+            android:text="jabcnjzbdjabdbxiojdnqdipadnc " />
 
         <Button
             android:id="@+id/Answer4button"
@@ -66,8 +118,8 @@
             android:id="@+id/nextQuestionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/black"
+            android:backgroundTint="@android:color/holo_blue_light"
+            android:textColor="@android:color/white"
             android:text="Next question" />
     </LinearLayout>
 

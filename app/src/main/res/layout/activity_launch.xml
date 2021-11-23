@@ -20,10 +20,9 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:srcCompat="@tools:sample/avatars"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="Image" />
+        android:layout_centerInParent="true"
+        android:contentDescription="Image"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <Spinner
         android:id="@+id/levelDifficulty"
