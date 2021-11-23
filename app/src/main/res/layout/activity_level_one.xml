@@ -7,36 +7,21 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:weightSum="2"
-    android:layout_gravity="bottom"
+    android:layout_gravity=""
     tools:context=".LevelOneActivity">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="130dp"
-            android:contentDescription="Image"
-            tools:srcCompat="@tools:sample/avatars" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
 
         <TextView
-            android:id="@+id/actorName"
+            android:id="@+id/releaseDateLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:text="Actor name: "
+            android:layout_marginLeft="10dp"
+            android:text="Release date: 2016-08-03"
             />
 
     </LinearLayout>
@@ -47,14 +32,91 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/characterName"
+            android:id="@+id/overview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:text="Character name: "
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="Overview: From DC Comics comes the Suicide Squad, an antihero team of incarcerated supervillains who act as deniable assets for the United States government, undertaking high-risk black ops missions in exchange for commuted prison sentences."
             />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+            <ImageView
+                android:id="@+id/imageActor1"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:contentDescription="Image"
+                android:adjustViewBounds = "true"
+                app:srcCompat="@drawable/photo_1"/>
+
+            <ImageView
+                android:id="@+id/imageActor2"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:contentDescription="Image"
+                android:adjustViewBounds = "true"
+                app:srcCompat="@drawable/photo_2"/>
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/nameActor1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:text="Actor name: Brad Pitt "
+                />
+
+            <TextView
+                android:id="@+id/nameActor2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:text="Actor name: Tom Cruise"
+                />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/nameCharacter1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:text="Character name: Inspecteur jack "
+            />
+
+        <TextView
+            android:id="@+id/nameCharacter2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:text="Character name: Bobby "
+            />
+
+    </LinearLayout>
+
 
 
     <LinearLayout
@@ -63,14 +125,16 @@
             android:orientation="horizontal"
             android:baselineAligned="false">
 
-            <Button
-                android:id="@+id/Answer1button"
-                android:layout_width="0dp"
-                android:layout_height="90dp"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:gravity="left|center_vertical"
-                android:text="Harry Potter" />
+        <Button
+            android:id="@+id/Answer1button"
+            android:layout_width="0dp"
+            android:layout_height="90dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:text="Harry Potter" />
 
         <!--    android:maxWidth="90dp"-->
 
@@ -78,7 +142,9 @@
                 android:id="@+id/Answer2button"
                 android:layout_width="0dp"
                 android:layout_height="90dp"
-                android:layout_margin="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:text="Harry Potter and the cursed Child" />
 
@@ -120,6 +186,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/holo_blue_light"
             android:textColor="@android:color/white"
+            android:layout_marginRight="10dp"
             android:text="Next question" />
     </LinearLayout>
 
