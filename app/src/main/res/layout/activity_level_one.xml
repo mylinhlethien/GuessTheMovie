@@ -21,7 +21,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="Release date: 2016-08-03"
+            android:text="Release date: "
+            android:textColor="@color/teal_700"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/releaseDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             />
 
     </LinearLayout>
@@ -31,20 +40,29 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <TextView
+            android:id="@+id/overviewLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:scrollbars = "vertical"
+            android:textColor="@color/teal_700"
+            android:text="Overview: "
+            android:textStyle="bold"
+            />
+
         <ScrollView
             android:layout_width="wrap_content"
-            android:layout_height="90dp">
+            android:layout_height="90dp"
+            android:paddingTop="10dp">
 
             <TextView
                 android:id="@+id/overview"
                 android:layout_width="wrap_content"
                 android:layout_height="90dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:scrollbars = "vertical"
-                android:text="From DC Comics comes the Suicide Squad, an antihero team of incarcerated supervillains who act as deniable assets for the United From DC Comics comes the Suicide Squad, an antihero team of incarcerated supervillains who act as deniable assets for the United From DC Comics comes the Suicide Squad, an antihero team of incarcerated supervillains who act as deniable assets for the UnitedOverview: From DC Comics comes the Suicide Squad, an antihero team of incarcerated supervillains who act as deniable assets for the United States government, undertaking high-risk black ops missions in exchange for commuted prison sentences."
-                />
+                android:scrollbars="vertical" />
         </ScrollView>
 
 
@@ -63,6 +81,7 @@
                 android:layout_height="120dp"
                 android:layout_weight="1"
                 android:contentDescription="Image"
+                android:layout_marginTop="5dp"
                 android:adjustViewBounds = "true"
                 app:srcCompat="@drawable/photo_1"/>
 
@@ -72,6 +91,7 @@
                 android:layout_height="120dp"
                 android:layout_weight="1"
                 android:contentDescription="Image"
+                android:layout_marginTop="5dp"
                 android:adjustViewBounds = "true"
                 app:srcCompat="@drawable/photo_2"/>
 
@@ -82,22 +102,31 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/nameActor1"
+                android:id="@+id/nameActor1Label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_margin="10dp"
-                android:text="Actor name: Brad Pitt "
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:text="Actor name 1:"
+                android:textColor="@color/teal_700"
+                android:textStyle="bold"
                 />
 
+
             <TextView
-                android:id="@+id/nameActor2"
+                android:id="@+id/nameActor2Label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_margin="10dp"
-                android:text="Actor name: Tom Cruise"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:text="Actor name 2:"
+                android:textColor="@color/teal_700"
+                android:textStyle="bold"
                 />
+
+
 
         </LinearLayout>
 
@@ -105,14 +134,71 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
+
+        <TextView
+            android:id="@+id/nameActor1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            />
+
+
+
+        <TextView
+            android:id="@+id/nameActor2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/nameCharacter1Label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="Character name 1:"
+            android:textColor="@color/teal_700"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/nameCharacter2Label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="Character name 2:"
+            android:textColor="@color/teal_700"
+            android:textStyle="bold"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
         <TextView
             android:id="@+id/nameCharacter1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginLeft="10dp"
-            android:text="Character name: Inspecteur jack "
             />
+
 
         <TextView
             android:id="@+id/nameCharacter2"
@@ -120,7 +206,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginLeft="10dp"
-            android:text="Character name: Bobby "
             />
 
     </LinearLayout>
@@ -138,7 +223,7 @@
             android:layout_width="0dp"
             android:layout_height="90dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:gravity="left|center_vertical"
@@ -151,7 +236,7 @@
                 android:layout_width="0dp"
                 android:layout_height="90dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:text="Harry Potter and the cursed Child" />
@@ -169,7 +254,9 @@
             android:id="@+id/Answer3button"
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:text="jabcnjzbdjabdbxiojdnqdipadnc " />
 
@@ -177,7 +264,9 @@
             android:id="@+id/Answer4button"
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:text="jzndnljnjaeblkdn" />
 
