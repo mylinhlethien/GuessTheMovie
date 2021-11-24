@@ -40,15 +40,33 @@ public class LevelOneActivity extends AppCompatActivity {
         MovieInterface movieInterface = MovieClass.getMovieInstance().create(MovieInterface.class);
         MovieInterface pictureInterface = PictureClass.getPictureInstance().create(MovieInterface.class);
 
-
+        getMovies(movieInterface);
         movieDetailsLevelOne(movieInterface);
 
         movieActors(movieInterface, pictureInterface);
         movieActors(movieInterface,pictureInterface);
     }
 
-    private void movieActors(MovieInterface retrofitInterface, MovieInterface pictureInterface) {
-        Call<JsonObject> call = retrofitInterface.getMovieActors("299534");
+    private void getMovies(MovieInterface movieInterface) {
+        Call<JsonObject> call = movieInterface.getPopularMovies("1");
+        Log.d("call", String.valueOf(call.request().url()));
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                JsonObject res = response.body();
+                Log.d("res", String.valueOf(res));
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Log.d("failure", String.valueOf(t));
+            }
+
+        });
+    }
+
+    private void movieActors(MovieInterface movieInterface, MovieInterface pictureInterface) {
+        Call<JsonObject> call = movieInterface.getMovieActors("299534");
         Log.d("call", String.valueOf(call.request().url()));
         call.enqueue(new Callback<JsonObject>() {
             @Override
@@ -86,8 +104,8 @@ public class LevelOneActivity extends AppCompatActivity {
         });
     }
 
-    private void movieDetailsLevelOne(MovieInterface retrofitInterface) {
-        Call<JsonObject> call = retrofitInterface.getMovieDetails("299534");
+    private void movieDetailsLevelOne(MovieInterface movieInterface) {
+        Call<JsonObject> call = movieInterface.getMovieDetails("299534");
         Log.d("call", String.valueOf(call.request().url()));
         call.enqueue(new Callback<JsonObject>() {
             @Override
