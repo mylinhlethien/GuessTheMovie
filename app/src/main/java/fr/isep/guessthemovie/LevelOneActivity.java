@@ -47,6 +47,7 @@ public class LevelOneActivity extends AppCompatActivity {
         movieActors(movieInterface,pictureInterface);
     }
 
+    
     private void getPopularMovies(MovieInterface movieInterface) {
         Call<JsonObject> call = movieInterface.getPopularMovies("1");
         Log.d("call popular movies", String.valueOf(call.request().url()));
