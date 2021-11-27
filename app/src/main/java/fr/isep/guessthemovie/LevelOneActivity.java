@@ -40,21 +40,24 @@ public class LevelOneActivity extends AppCompatActivity {
         MovieInterface movieInterface = MovieClass.getMovieInstance().create(MovieInterface.class);
         MovieInterface pictureInterface = PictureClass.getPictureInstance().create(MovieInterface.class);
 
-        getMovies(movieInterface);
+        getPopularMovies(movieInterface);
         movieDetailsLevelOne(movieInterface);
 
         movieActors(movieInterface, pictureInterface);
         movieActors(movieInterface,pictureInterface);
     }
 
-    private void getMovies(MovieInterface movieInterface) {
+    private void getPopularMovies(MovieInterface movieInterface) {
         Call<JsonObject> call = movieInterface.getPopularMovies("1");
-        Log.d("call", String.valueOf(call.request().url()));
+        Log.d("call popular movies", String.valueOf(call.request().url()));
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 JsonObject res = response.body();
-                Log.d("res", String.valueOf(res));
+                Log.d("Popular movie", String.valueOf(res));
+                JsonElement cast = res.get("results");
+                JsonElement popularMovieId = cast.getAsJsonArray().get(1).getAsJsonObject().get("id");
+                Log.d("Popular movie Id", String.valueOf(popularMovieId));
             }
 
             @Override
@@ -67,7 +70,7 @@ public class LevelOneActivity extends AppCompatActivity {
 
     private void movieActors(MovieInterface movieInterface, MovieInterface pictureInterface) {
         Call<JsonObject> call = movieInterface.getMovieActors("299534");
-        Log.d("call", String.valueOf(call.request().url()));
+        Log.d("call movie actors", String.valueOf(call.request().url()));
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
@@ -106,7 +109,7 @@ public class LevelOneActivity extends AppCompatActivity {
 
     private void movieDetailsLevelOne(MovieInterface movieInterface) {
         Call<JsonObject> call = movieInterface.getMovieDetails("299534");
-        Log.d("call", String.valueOf(call.request().url()));
+        Log.d("call movie details level 1", String.valueOf(call.request().url()));
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
@@ -134,7 +137,7 @@ public class LevelOneActivity extends AppCompatActivity {
 
     private void getPictures(MovieInterface pictureInterface, String picture_path) {
         Call<JsonObject> call = pictureInterface.getMovieActorPicture(picture_path);
-        Log.d("call", String.valueOf(call.request().url()));
+        Log.d("call get pictures", String.valueOf(call.request().url()));
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
