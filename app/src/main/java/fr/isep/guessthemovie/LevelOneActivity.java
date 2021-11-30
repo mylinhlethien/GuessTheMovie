@@ -2,9 +2,6 @@ package fr.isep.guessthemovie;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -14,20 +11,18 @@ import android.widget.TextView;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import java.io.InputStream;
-import java.net.URL;
 import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofitPackage.DownloadImageTask;
 import retrofitPackage.MovieInterface;
 import retrofitPackage.MovieClass;
 import retrofitPackage.PictureClass;
 
 public class LevelOneActivity extends AppCompatActivity {
 
-    private static ImageView imageActor1;
     TextView releaseDateTxt;
     TextView overviewTxt;
     TextView actor1Txt;
@@ -35,7 +30,7 @@ public class LevelOneActivity extends AppCompatActivity {
     TextView character1Txt;
     TextView character2Txt;
     Button answer1Button;
-    //ImageView imageActor1;
+    ImageView imageActor1;
     ImageView imageActor2;
 
     @Override
@@ -175,31 +170,5 @@ public class LevelOneActivity extends AppCompatActivity {
             }
 
         });
-    }
-
-
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
-
-        public DownloadImageTask(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
-        }
     }
 }
