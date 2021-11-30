@@ -2,14 +2,20 @@ package fr.isep.guessthemovie;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import java.io.InputStream;
+import java.net.URL;
 import java.util.Random;
 
 import retrofit2.Call;
@@ -21,6 +27,7 @@ import retrofitPackage.PictureClass;
 
 public class LevelOneActivity extends AppCompatActivity {
 
+    private static ImageView imageActor1;
     TextView releaseDateTxt;
     TextView overviewTxt;
     TextView actor1Txt;
@@ -28,6 +35,8 @@ public class LevelOneActivity extends AppCompatActivity {
     TextView character1Txt;
     TextView character2Txt;
     Button answer1Button;
+    //ImageView imageActor1;
+    ImageView imageActor2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +50,14 @@ public class LevelOneActivity extends AppCompatActivity {
         character1Txt = findViewById(R.id.nameCharacter1);
         character2Txt = findViewById(R.id.nameCharacter2);
         answer1Button = findViewById(R.id.Answer1button);
+        imageActor1 = findViewById(R.id.imageActor1);
+        imageActor2 = findViewById(R.id.imageActor2);
 
         MovieInterface movieInterface = MovieClass.getMovieInstance().create(MovieInterface.class);
         MovieInterface pictureInterface = PictureClass.getPictureInstance().create(MovieInterface.class);
 
         getPopularMovies(movieInterface, pictureInterface);
+
     }
 
     
@@ -116,7 +128,17 @@ public class LevelOneActivity extends AppCompatActivity {
                 actor2Txt.setText(String.valueOf(actorName2));
                 character1Txt.setText(String.valueOf(characterName1));
                 character2Txt.setText(String.valueOf(characterName2));
-                //getPictures(pictureInterface, actorPicture.getAsString());
+
+                //display picture 1
+                Call<JsonObject> pictureCall = pictureInterface.getMovieActorPicture(actorPicture1.getAsString());
+                Log.d("picture 1", String.valueOf(call.request().url()));
+                new DownloadImageTask((ImageView) findViewById(R.id.imageActor1))
+                        .execute(String.valueOf(pictureCall.request().url()));
+                //display picture 2
+                Call<JsonObject> pictureCall2 = pictureInterface.getMovieActorPicture(actorPicture2.getAsString());
+                Log.d("picture 2", String.valueOf(call.request().url()));
+                new DownloadImageTask((ImageView) findViewById(R.id.imageActor2))
+                        .execute(String.valueOf(pictureCall2.request().url()));
             }
 
             @Override
@@ -155,21 +177,29 @@ public class LevelOneActivity extends AppCompatActivity {
         });
     }
 
-    private void getPictures(MovieInterface pictureInterface, String picture_path) {
-        Call<JsonObject> call = pictureInterface.getMovieActorPicture(picture_path);
-        Log.d("call get pictures", String.valueOf(call.request().url()));
-        call.enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                JsonObject res = response.body();
-                Log.d("res", String.valueOf(res));
-            }
 
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                Log.d("failure", String.valueOf(t));
-            }
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
 
-        });
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
     }
 }
