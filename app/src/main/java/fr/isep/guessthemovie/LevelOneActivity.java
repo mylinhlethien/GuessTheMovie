@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.gson.JsonElement;
@@ -26,6 +27,7 @@ public class LevelOneActivity extends AppCompatActivity {
     TextView actor2Txt;
     TextView character1Txt;
     TextView character2Txt;
+    Button answer1Button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class LevelOneActivity extends AppCompatActivity {
         actor2Txt = findViewById(R.id.nameActor2);
         character1Txt = findViewById(R.id.nameCharacter1);
         character2Txt = findViewById(R.id.nameCharacter2);
+        answer1Button = findViewById(R.id.Answer1button);
 
         MovieInterface movieInterface = MovieClass.getMovieInstance().create(MovieInterface.class);
         MovieInterface pictureInterface = PictureClass.getPictureInstance().create(MovieInterface.class);
@@ -141,7 +144,7 @@ public class LevelOneActivity extends AppCompatActivity {
 
                 releaseDateTxt.setText(String.valueOf(releaseDate));
                 overviewTxt.setText(String.valueOf(overview));
-                // title à afficher dans une des cases propositions
+                answer1Button.setText(String.valueOf(originalTitle));
             }
 
             @Override
