@@ -82,8 +82,7 @@
                 android:layout_weight="1"
                 android:contentDescription="Image"
                 android:layout_marginTop="5dp"
-                android:adjustViewBounds = "true"
-                app:srcCompat="@drawable/photo_1"/>
+                android:adjustViewBounds = "true"/>
 
             <ImageView
                 android:id="@+id/imageActor2"
@@ -92,8 +91,7 @@
                 android:layout_weight="1"
                 android:contentDescription="Image"
                 android:layout_marginTop="5dp"
-                android:adjustViewBounds = "true"
-                app:srcCompat="@drawable/photo_2"/>
+                android:adjustViewBounds = "true"/>
 
     </LinearLayout>
 
