@@ -11,6 +11,9 @@ import android.widget.TextView;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 import retrofit2.Call;
@@ -30,6 +33,9 @@ public class LevelOneActivity extends AppCompatActivity {
     TextView character1Txt;
     TextView character2Txt;
     Button answer1Button;
+    Button answer2Button;
+    Button answer3Button;
+    Button answer4Button;
     ImageView imageActor1;
     ImageView imageActor2;
 
@@ -45,6 +51,9 @@ public class LevelOneActivity extends AppCompatActivity {
         character1Txt = findViewById(R.id.nameCharacter1);
         character2Txt = findViewById(R.id.nameCharacter2);
         answer1Button = findViewById(R.id.Answer1button);
+        answer2Button = findViewById(R.id.Answer2button);
+        answer3Button = findViewById(R.id.Answer3button);
+        answer4Button = findViewById(R.id.Answer4button);
         imageActor1 = findViewById(R.id.imageActor1);
         imageActor2 = findViewById(R.id.imageActor2);
 
@@ -54,7 +63,42 @@ public class LevelOneActivity extends AppCompatActivity {
         getPopularMovies(movieInterface, pictureInterface);
 
     }
+    private void generateRandomAnswers(MovieInterface movieInterface, int randomPageNumber) {
+        // Generate 3 movieIds between 0-19 on the next page as the right answer
+        List<Integer> list = new ArrayList<Integer>();
+        for(int i = 0; i < 20; i++){
+            list.add(i);
+        }
 
+        Collections.shuffle(list);
+        Integer[] randomArray = list.subList(0, 3).toArray(new Integer[3]);
+
+
+        for(Integer num:randomArray){
+            Log.d("random", String.valueOf(num));
+
+            Call<JsonObject> call = movieInterface.getPopularMovies(randomPageNumber+1);
+            Log.d("call answers options", String.valueOf(call.request().url()));
+            call.enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    JsonObject res = response.body();
+                    Log.d("Answer option movie", String.valueOf(res));
+                    JsonElement results = res.get("results");
+                    String answerMovieTitle = results.getAsJsonArray().get(num).getAsJsonObject().get("original_title").getAsString();
+                    Log.d("Answer option movie title", answerMovieTitle);
+                }
+
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+                    Log.d("failure", String.valueOf(t));
+                }
+
+            });
+        }
+
+
+    }
     
     private void getPopularMovies(MovieInterface movieInterface, MovieInterface pictureInterface) {
         // Generate random page number between 1-20
@@ -77,14 +121,16 @@ public class LevelOneActivity extends AppCompatActivity {
                 JsonObject res = response.body();
                 Log.d("Popular movie", String.valueOf(res));
                 JsonElement results = res.get("results");
-                JsonElement popularMovieId = results.getAsJsonArray().get(randomMovieId).getAsJsonObject().get("id");
+                int popularMovieId = results.getAsJsonArray().get(randomMovieId).getAsJsonObject().get("id").getAsInt();
                 Log.d("Popular movie Id", String.valueOf(popularMovieId));
 
 
                 //call the other methods
-                movieDetailsLevelOne(movieInterface, Integer.parseInt(String.valueOf(popularMovieId)));
-                movieActors(movieInterface, pictureInterface, Integer.parseInt(String.valueOf(popularMovieId)));
-                movieActors(movieInterface,pictureInterface, Integer.parseInt(String.valueOf(popularMovieId)));
+                movieDetailsLevelOne(movieInterface, popularMovieId);
+                movieActors(movieInterface, pictureInterface, popularMovieId);
+                movieActors(movieInterface,pictureInterface, popularMovieId);
+                //call random proposition answers (parameter randomPageNumber to take the next page)
+                generateRandomAnswers(movieInterface, randomPageNumber);
             }
 
             @Override
@@ -105,32 +151,32 @@ public class LevelOneActivity extends AppCompatActivity {
                 //Log.d("res", String.valueOf(res));
                 JsonElement cast = res.get("cast");
                 //Log.d("cast", String.valueOf(cast));
-                JsonElement actorName1 = cast.getAsJsonArray().get(0).getAsJsonObject().get("name");
-                JsonElement characterName1 = cast.getAsJsonArray().get(0).getAsJsonObject().get("character");
-                JsonElement actorPicture1 = cast.getAsJsonArray().get(0).getAsJsonObject().get("profile_path");
+                String actorName1 = cast.getAsJsonArray().get(0).getAsJsonObject().get("name").getAsString();
+                String characterName1 = cast.getAsJsonArray().get(0).getAsJsonObject().get("character").getAsString();
+                String actorPicture1 = cast.getAsJsonArray().get(0).getAsJsonObject().get("profile_path").getAsString();
                 //Log.d("actorName 0", String.valueOf(actorName1));
                 //Log.d("actorCharacter 0", String.valueOf(characterName1));
                 Log.d("actorPicture 0 ", String.valueOf(actorPicture1));
 
-                JsonElement actorName2 = cast.getAsJsonArray().get(1).getAsJsonObject().get("name");
-                JsonElement characterName2 = cast.getAsJsonArray().get(1).getAsJsonObject().get("character");
-                JsonElement actorPicture2 = cast.getAsJsonArray().get(1).getAsJsonObject().get("profile_path");
+                String actorName2 = cast.getAsJsonArray().get(1).getAsJsonObject().get("name").getAsString();
+                String characterName2 = cast.getAsJsonArray().get(1).getAsJsonObject().get("character").getAsString();
+                String actorPicture2 = cast.getAsJsonArray().get(1).getAsJsonObject().get("profile_path").getAsString();
                // Log.d("actorName 1", String.valueOf(actorName2));
                 //Log.d("actorCharacter 1", String.valueOf(characterName2));
                 Log.d("actorPicture 1 ", String.valueOf(actorPicture2));
 
-                actor1Txt.setText(String.valueOf(actorName1));
-                actor2Txt.setText(String.valueOf(actorName2));
-                character1Txt.setText(String.valueOf(characterName1));
-                character2Txt.setText(String.valueOf(characterName2));
+                actor1Txt.setText(actorName1);
+                actor2Txt.setText(actorName2);
+                character1Txt.setText(characterName1);
+                character2Txt.setText(characterName2);
 
                 //display picture 1
-                Call<JsonObject> pictureCall = pictureInterface.getMovieActorPicture(actorPicture1.getAsString());
+                Call<JsonObject> pictureCall = pictureInterface.getMovieActorPicture(actorPicture1);
                 Log.d("picture 1", String.valueOf(call.request().url()));
                 new DownloadImageTask((ImageView) findViewById(R.id.imageActor1))
                         .execute(String.valueOf(pictureCall.request().url()));
                 //display picture 2
-                Call<JsonObject> pictureCall2 = pictureInterface.getMovieActorPicture(actorPicture2.getAsString());
+                Call<JsonObject> pictureCall2 = pictureInterface.getMovieActorPicture(actorPicture2);
                 Log.d("picture 2", String.valueOf(call.request().url()));
                 new DownloadImageTask((ImageView) findViewById(R.id.imageActor2))
                         .execute(String.valueOf(pictureCall2.request().url()));
@@ -152,16 +198,16 @@ public class LevelOneActivity extends AppCompatActivity {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 JsonObject res = response.body();
                 //Log.d("res", String.valueOf(res));
-                JsonElement originalTitle = res.get("original_title");
-                JsonElement overview = res.get("overview");
-                JsonElement releaseDate = res.get("release_date");
-                Log.d("title", String.valueOf(originalTitle));
+                String originalTitle = res.get("original_title").getAsString();
+                String overview = res.get("overview").getAsString();
+                String releaseDate = res.get("release_date").getAsString();
+                Log.d("title", originalTitle);
                 //Log.d("overview", String.valueOf(overview));
                 //Log.d("releaseDate", String.valueOf(releaseDate));
 
-                releaseDateTxt.setText(String.valueOf(releaseDate));
-                overviewTxt.setText(String.valueOf(overview));
-                answer1Button.setText(String.valueOf(originalTitle));
+                releaseDateTxt.setText(releaseDate);
+                overviewTxt.setText(overview);
+                answer1Button.setText(originalTitle);
             }
 
             @Override
