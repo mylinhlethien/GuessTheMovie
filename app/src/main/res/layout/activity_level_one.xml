@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:padding= "16dp"
     android:layout_width="match_parent"
@@ -83,7 +82,7 @@
                 android:contentDescription="Image"
                 android:layout_marginTop="5dp"
                 android:adjustViewBounds = "true"
-                app:srcCompat="@drawable/photo_1"/>
+                />
 
             <ImageView
                 android:id="@+id/imageActor2"
@@ -92,8 +91,7 @@
                 android:layout_weight="1"
                 android:contentDescription="Image"
                 android:layout_marginTop="5dp"
-                android:adjustViewBounds = "true"
-                app:srcCompat="@drawable/photo_2"/>
+                android:adjustViewBounds = "true"/>
 
     </LinearLayout>
 
@@ -126,15 +124,11 @@
                 android:textStyle="bold"
                 />
 
-
-
         </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-
 
         <TextView
             android:id="@+id/nameActor1"
@@ -143,8 +137,6 @@
             android:layout_weight="1"
             android:layout_marginLeft="10dp"
             />
-
-
 
         <TextView
             android:id="@+id/nameActor2"
@@ -227,7 +219,7 @@
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:gravity="left|center_vertical"
-            android:text="Harry Potter" />
+            />
 
         <!--    android:maxWidth="90dp"-->
 
@@ -239,7 +231,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:text="Harry Potter and the cursed Child" />
+                />
 
         </LinearLayout>
 
@@ -258,7 +250,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:text="jabcnjzbdjabdbxiojdnqdipadnc " />
+            />
 
         <Button
             android:id="@+id/Answer4button"
@@ -268,7 +260,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:text="jzndnljnjaeblkdn" />
+            />
 
     </LinearLayout>
 
