@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:padding= "16dp"
     android:layout_width="match_parent"
@@ -82,7 +83,7 @@
                 android:contentDescription="Image"
                 android:layout_marginTop="5dp"
                 android:adjustViewBounds = "true"
-                />
+                app:srcCompat="@drawable/photo_1"/>
 
             <ImageView
                 android:id="@+id/imageActor2"
@@ -91,7 +92,8 @@
                 android:layout_weight="1"
                 android:contentDescription="Image"
                 android:layout_marginTop="5dp"
-                android:adjustViewBounds = "true"/>
+                android:adjustViewBounds = "true"
+                app:srcCompat="@drawable/photo_2"/>
 
     </LinearLayout>
 
@@ -124,11 +126,15 @@
                 android:textStyle="bold"
                 />
 
+
+
         </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+
 
         <TextView
             android:id="@+id/nameActor1"
@@ -137,6 +143,8 @@
             android:layout_weight="1"
             android:layout_marginLeft="10dp"
             />
+
+
 
         <TextView
             android:id="@+id/nameActor2"
@@ -217,9 +225,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:gravity="left|center_vertical"
-            />
+            android:layout_weight="1"/>
 
         <!--    android:maxWidth="90dp"-->
 
@@ -230,8 +236,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                />
+                android:layout_weight="1"/>
 
         </LinearLayout>
 
@@ -249,8 +254,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            />
+            android:layout_weight="1"/>
 
         <Button
             android:id="@+id/Answer4button"
@@ -259,8 +263,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            />
+            android:layout_weight="1" />
 
     </LinearLayout>
 
