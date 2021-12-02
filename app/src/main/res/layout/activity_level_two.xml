@@ -22,7 +22,6 @@
             android:contentDescription="Backdrop Image Level Two"
             android:layout_marginTop="5dp"
             android:adjustViewBounds = "true"
-            app:srcCompat="@drawable/photo_1"
             android:layout_weight="1"
             />
 

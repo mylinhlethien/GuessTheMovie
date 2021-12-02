@@ -19,4 +19,7 @@ public interface MovieInterface {
 
     @GET("movie/popular?api_key=64a67a88869b332a993437d0b110879b&language=en-US")
     Call<JsonObject> getPopularMovies(@Query("page") int page_number);
+
+    @GET("{picture_path}")
+    Call<JsonObject> getMovieBackdropPicture(@Path("picture_path") String backdropPicture_path);
 }
