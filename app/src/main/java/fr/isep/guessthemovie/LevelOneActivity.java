@@ -38,6 +38,7 @@ public class LevelOneActivity extends AppCompatActivity {
     Button answer4Button;
     ImageView imageActor1;
     ImageView imageActor2;
+    ArrayList<Button> allButtons = new ArrayList<Button>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,10 @@ public class LevelOneActivity extends AppCompatActivity {
         answer2Button = findViewById(R.id.Answer2button);
         answer3Button = findViewById(R.id.Answer3button);
         answer4Button = findViewById(R.id.Answer4button);
+        allButtons.add(answer1Button);
+        allButtons.add(answer2Button);
+        allButtons.add(answer3Button);
+        allButtons.add(answer4Button);
         imageActor1 = findViewById(R.id.imageActor1);
         imageActor2 = findViewById(R.id.imageActor2);
 
@@ -75,26 +80,32 @@ public class LevelOneActivity extends AppCompatActivity {
 
 
         for(Integer num:randomArray){
-            Log.d("random", String.valueOf(num));
+                Log.d("random", String.valueOf(num));
 
-            Call<JsonObject> call = movieInterface.getPopularMovies(randomPageNumber+1);
-            Log.d("call answers options", String.valueOf(call.request().url()));
-            call.enqueue(new Callback<JsonObject>() {
-                @Override
-                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                    JsonObject res = response.body();
-                    Log.d("Answer option movie", String.valueOf(res));
-                    JsonElement results = res.get("results");
-                    String answerMovieTitle = results.getAsJsonArray().get(num).getAsJsonObject().get("original_title").getAsString();
-                    Log.d("Answer option movie title", answerMovieTitle);
-                }
+                Call<JsonObject> call = movieInterface.getPopularMovies(randomPageNumber + 1);
+                Log.d("call answers options", String.valueOf(call.request().url()));
+                call.enqueue(new Callback<JsonObject>() {
+                    @Override
+                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                        JsonObject res = response.body();
+                        JsonElement results = res.get("results");
+                        String answerMovieTitle = results.getAsJsonArray().get(num).getAsJsonObject().get("original_title").getAsString();
+                        Log.d("Answer option movie title", answerMovieTitle);
+                        // display in random button (0-2)
+                        Random r = new Random();
+                        int low = 0; //included
+                        int high = allButtons.size(); //not included
+                        int randomButton = r.nextInt(high-low) + low;
+                        allButtons.get(randomButton).setText(answerMovieTitle);
+                        allButtons.remove(randomButton);
+                    }
 
-                @Override
-                public void onFailure(Call<JsonObject> call, Throwable t) {
-                    Log.d("failure", String.valueOf(t));
-                }
+                    @Override
+                    public void onFailure(Call<JsonObject> call, Throwable t) {
+                        Log.d("failure", String.valueOf(t));
+                    }
 
-            });
+                });
         }
 
 
@@ -148,21 +159,15 @@ public class LevelOneActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 JsonObject res = response.body();
-                //Log.d("res", String.valueOf(res));
                 JsonElement cast = res.get("cast");
-                //Log.d("cast", String.valueOf(cast));
                 String actorName1 = cast.getAsJsonArray().get(0).getAsJsonObject().get("name").getAsString();
                 String characterName1 = cast.getAsJsonArray().get(0).getAsJsonObject().get("character").getAsString();
                 String actorPicture1 = cast.getAsJsonArray().get(0).getAsJsonObject().get("profile_path").getAsString();
-                //Log.d("actorName 0", String.valueOf(actorName1));
-                //Log.d("actorCharacter 0", String.valueOf(characterName1));
                 Log.d("actorPicture 0 ", String.valueOf(actorPicture1));
 
                 String actorName2 = cast.getAsJsonArray().get(1).getAsJsonObject().get("name").getAsString();
                 String characterName2 = cast.getAsJsonArray().get(1).getAsJsonObject().get("character").getAsString();
                 String actorPicture2 = cast.getAsJsonArray().get(1).getAsJsonObject().get("profile_path").getAsString();
-               // Log.d("actorName 1", String.valueOf(actorName2));
-                //Log.d("actorCharacter 1", String.valueOf(characterName2));
                 Log.d("actorPicture 1 ", String.valueOf(actorPicture2));
 
                 actor1Txt.setText(actorName1);
@@ -197,17 +202,21 @@ public class LevelOneActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 JsonObject res = response.body();
-                //Log.d("res", String.valueOf(res));
                 String originalTitle = res.get("original_title").getAsString();
                 String overview = res.get("overview").getAsString();
                 String releaseDate = res.get("release_date").getAsString();
                 Log.d("title", originalTitle);
-                //Log.d("overview", String.valueOf(overview));
-                //Log.d("releaseDate", String.valueOf(releaseDate));
 
                 releaseDateTxt.setText(releaseDate);
                 overviewTxt.setText(overview);
-                answer1Button.setText(originalTitle);
+
+                // display in random button (0-3)
+                Random r = new Random();
+                int low = 0; //included
+                int high = 3; //not included
+                int randomButton = r.nextInt(high-low) + low;
+                allButtons.get(randomButton).setText(originalTitle);
+                allButtons.remove(randomButton);
             }
 
             @Override
