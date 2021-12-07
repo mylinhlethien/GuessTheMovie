@@ -2,11 +2,17 @@ package fr.isep.guessthemovie;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.JsonArray;
@@ -28,12 +34,15 @@ import retrofitPackage.MovieInterface;
 import retrofitPackage.PictureClass;
 
 public class LevelTwoActivity extends AppCompatActivity {
+
     TextView releaseDateTxt;
     TextView movieGenreTxt;
     Button answer1Button;
     Button answer2Button;
     Button answer3Button;
     Button answer4Button;
+    int correctAnswerId ;
+
     ArrayList<Button> allButtons = new ArrayList<Button>();
 
     @Override
@@ -44,7 +53,6 @@ public class LevelTwoActivity extends AppCompatActivity {
         releaseDateTxt = findViewById(R.id.releaseDateLevelTwo);
         movieGenreTxt = findViewById(R.id.movieGenreLevelTwo);
         answer1Button = findViewById(R.id.Answer1buttonLevelTwo);
-        answer1Button = findViewById(R.id.Answer1buttonLevelTwo);
         answer2Button = findViewById(R.id.Answer2buttonLevelTwo);
         answer3Button = findViewById(R.id.Answer3buttonLevelTwo);
         answer4Button = findViewById(R.id.Answer4buttonLevelTwo);
@@ -53,6 +61,7 @@ public class LevelTwoActivity extends AppCompatActivity {
         allButtons.add(answer3Button);
         allButtons.add(answer4Button);
 
+
         MovieInterface movieInterface = MovieClass.getMovieInstance().create(MovieInterface.class);
         MovieInterface pictureInterface = PictureClass.getPictureInstance().create(MovieInterface.class);
 
@@ -60,6 +69,17 @@ public class LevelTwoActivity extends AppCompatActivity {
 
     }
 
+
+    public void onClick (View view) {
+        Button b = (Button) view;
+        if (correctAnswerId == b.getId()){
+            b.setBackgroundColor(Color.GREEN);
+        }
+        else{
+            b.setBackgroundColor(Color.RED);
+        }
+
+    }
 
     private void generateRandomAnswers(MovieInterface movieInterface, int randomPageNumber) {
         // Generate 3 movieIds between 0-19 on the next page as the right answer
@@ -71,26 +91,30 @@ public class LevelTwoActivity extends AppCompatActivity {
         Collections.shuffle(list);
         Integer[] randomArray = list.subList(0, 3).toArray(new Integer[3]);
 
-
-        for(Integer num:randomArray){
-            Log.d("random", String.valueOf(num));
+        int num;
+        for(num=0; num<4;num++){
+            Log.d("random array", String.valueOf(num));
 
             Call<JsonObject> call = movieInterface.getPopularMovies(randomPageNumber + 1);
             Log.d("call answers options", String.valueOf(call.request().url()));
+            int finalNum = num;
             call.enqueue(new Callback<JsonObject>() {
                 @Override
                 public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                     JsonObject res = response.body();
                     JsonElement results = res.get("results");
-                    String answerMovieTitle = results.getAsJsonArray().get(num).getAsJsonObject().get("original_title").getAsString();
+                    String answerMovieTitle = results.getAsJsonArray().get(finalNum).getAsJsonObject().get("original_title").getAsString();
                     Log.d("Answer option movie title", answerMovieTitle);
-                    // display in random button (0-2)
-                    Random r = new Random();
-                    int low = 0; //included
-                    int high = allButtons.size(); //not included
-                    int randomButton = r.nextInt(high-low) + low;
-                    allButtons.get(randomButton).setText(answerMovieTitle);
-                    allButtons.remove(randomButton);
+
+                    // display in random button (salma)
+                    for (int i=0; i<4;i++){
+                        Button b = allButtons.get(i);
+                        if (b.getText().equals("")){
+                            b.setText(answerMovieTitle);
+                            Log.d("test answer", i+ answerMovieTitle);
+                            break;
+                        }
+                    }
                 }
 
                 @Override
@@ -144,6 +168,17 @@ public class LevelTwoActivity extends AppCompatActivity {
     }
 
 
+    private int getRandom (){
+        Random r = new Random();
+        int low = 0; //included
+        int high = 4; //not included
+        int randomNumber = r.nextInt(high-low) + low;
+        Log.d("random button : ", String.valueOf(randomNumber));
+        return randomNumber;
+    }
+
+
+
     private void movieDetailsLevelTwo(MovieInterface movieInterface,MovieInterface pictureInterface, int movieId) {
         Call<JsonObject> call = movieInterface.getMovieDetails(movieId);
         Log.d("call movie details level 2", String.valueOf(call.request().url()));
@@ -181,14 +216,12 @@ public class LevelTwoActivity extends AppCompatActivity {
                 new DownloadImageTask((ImageView) findViewById(R.id.backdropImageLevelTwo))
                         .execute(String.valueOf(pictureCall2.request().url()));
 
-                // display in random button (0-3)
-                Random r = new Random();
-                int low = 0; //included
-                int high = 3; //not included
-                int randomButton = r.nextInt(high-low) + low;
-                Log.d("random num", String.valueOf(randomButton));
-                allButtons.get(randomButton).setText(originalTitle);
-                allButtons.remove(randomButton);
+
+                //display the searched movie in a button (salma)
+                int randomButton = getRandom();
+                Button b = allButtons.get(randomButton);
+                b.setText(originalTitle+"*");
+                correctAnswerId = b.getId();
             }
 
             @Override
@@ -198,4 +231,5 @@ public class LevelTwoActivity extends AppCompatActivity {
 
         });
     }
+
 }

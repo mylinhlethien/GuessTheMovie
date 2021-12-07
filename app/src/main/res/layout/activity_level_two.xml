@@ -79,6 +79,7 @@
 
 
     <LinearLayout
+        android:id="@+id/LinearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -91,7 +92,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onClick"/>
 
         <!--    android:maxWidth="90dp"-->
 
@@ -102,7 +104,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:onClick="onClick"/>
 
     </LinearLayout>
 
@@ -120,7 +123,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:onClick="onClick"/>
 
         <Button
             android:id="@+id/Answer4buttonLevelTwo"
@@ -129,7 +133,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:onClick="onClick"/>
 
     </LinearLayout>
 
