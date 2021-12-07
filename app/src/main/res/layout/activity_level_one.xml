@@ -223,7 +223,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onButtonClick"/>
 
         <!--    android:maxWidth="90dp"-->
 
@@ -234,7 +235,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:onClick="onButtonClick"/>
 
         </LinearLayout>
 
@@ -252,7 +254,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="onButtonClick"/>
 
         <Button
             android:id="@+id/Answer4button"
@@ -261,7 +264,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:onClick="onButtonClick"/>
 
     </LinearLayout>
 
@@ -277,7 +281,8 @@
             android:backgroundTint="@android:color/holo_blue_light"
             android:textColor="@android:color/white"
             android:layout_marginRight="10dp"
-            android:text="Next question" />
+            android:text="Next question"
+            android:onClick="nextQuestionClick"/>
     </LinearLayout>
 
 </LinearLayout>

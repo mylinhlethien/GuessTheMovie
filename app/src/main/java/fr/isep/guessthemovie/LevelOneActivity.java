@@ -2,8 +2,10 @@ package fr.isep.guessthemovie;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,6 +41,8 @@ public class LevelOneActivity extends AppCompatActivity {
     ImageView imageActor1;
     ImageView imageActor2;
     ArrayList<Button> allButtons = new ArrayList<Button>();
+    String movieTitleAnswer;
+    Button correctButtonAnswer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -206,6 +210,7 @@ public class LevelOneActivity extends AppCompatActivity {
                 String overview = res.get("overview").getAsString();
                 String releaseDate = res.get("release_date").getAsString();
                 Log.d("title", originalTitle);
+                movieTitleAnswer = originalTitle;
 
                 releaseDateTxt.setText(releaseDate);
                 overviewTxt.setText(overview);
@@ -216,6 +221,7 @@ public class LevelOneActivity extends AppCompatActivity {
                 int high = 3; //not included
                 int randomButton = r.nextInt(high-low) + low;
                 allButtons.get(randomButton).setText(originalTitle);
+                correctButtonAnswer = allButtons.get(randomButton);
                 allButtons.remove(randomButton);
             }
 
@@ -225,5 +231,28 @@ public class LevelOneActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    public void onButtonClick(View view) {
+        Button b = (Button) view;
+        String buttonText = b.getText().toString();
+
+        if (buttonText == movieTitleAnswer) {
+            b.setBackgroundColor(Color.GREEN);
+        }
+        else {
+            b.setBackgroundColor(Color.RED);
+            correctButtonAnswer.setBackgroundColor(Color.GREEN);
+        }
+        // disable other buttons
+        answer1Button.setClickable(false);
+        answer2Button.setClickable(false);
+        answer3Button.setClickable(false);
+        answer4Button.setClickable(false);
+        // update score
+    }
+
+    public void nextQuestionClick(View view) {
+        //start same activity and pass score through Intent
     }
 }

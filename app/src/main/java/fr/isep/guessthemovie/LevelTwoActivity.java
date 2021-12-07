@@ -2,9 +2,11 @@ package fr.isep.guessthemovie;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,6 +37,8 @@ public class LevelTwoActivity extends AppCompatActivity {
     Button answer3Button;
     Button answer4Button;
     ArrayList<Button> allButtons = new ArrayList<Button>();
+    String movieTitleAnswer;
+    Button correctButtonAnswer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,6 +157,7 @@ public class LevelTwoActivity extends AppCompatActivity {
                 JsonObject res = response.body();
                 Log.d("res", String.valueOf(res));
                 String originalTitle = res.get("original_title").getAsString();
+                movieTitleAnswer = originalTitle;
 
                 //get movie genres
                 JsonArray movieGenre = res.get("genres").getAsJsonArray();
@@ -188,6 +193,7 @@ public class LevelTwoActivity extends AppCompatActivity {
                 int randomButton = r.nextInt(high-low) + low;
                 Log.d("random num", String.valueOf(randomButton));
                 allButtons.get(randomButton).setText(originalTitle);
+                correctButtonAnswer = allButtons.get(randomButton);
                 allButtons.remove(randomButton);
             }
 
@@ -197,5 +203,24 @@ public class LevelTwoActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    public void onButtonClick(View view) {
+        Button b = (Button) view;
+        String buttonText = b.getText().toString();
+
+        if (buttonText == movieTitleAnswer) {
+            b.setBackgroundColor(Color.GREEN);
+        }
+        else {
+            b.setBackgroundColor(Color.RED);
+            correctButtonAnswer.setBackgroundColor(Color.GREEN);
+        }
+        // disable other buttons
+        answer1Button.setClickable(false);
+        answer2Button.setClickable(false);
+        answer3Button.setClickable(false);
+        answer4Button.setClickable(false);
+        // update score
     }
 }
