@@ -43,12 +43,16 @@ public class LevelOneActivity extends AppCompatActivity {
     ArrayList<Button> allButtons = new ArrayList<Button>();
     String movieTitleAnswer;
     Button correctButtonAnswer;
+    int score;
+    int nbQuestions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_one);
+        nbQuestions += 1;
 
+        // setText nbQuestions
         releaseDateTxt = findViewById(R.id.releaseDate);
         overviewTxt = findViewById(R.id.overview);
         actor1Txt = findViewById(R.id.nameActor1);
@@ -239,6 +243,8 @@ public class LevelOneActivity extends AppCompatActivity {
 
         if (buttonText == movieTitleAnswer) {
             b.setBackgroundColor(Color.GREEN);
+            score+=1;
+            //set Text du textView du score
         }
         else {
             b.setBackgroundColor(Color.RED);
@@ -253,6 +259,6 @@ public class LevelOneActivity extends AppCompatActivity {
     }
 
     public void nextQuestionClick(View view) {
-        //start same activity and pass score through Intent
+        //start same activity and pass score and nbQuestions through Intent
     }
 }

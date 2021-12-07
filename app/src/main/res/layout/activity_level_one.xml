@@ -287,7 +287,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="1/1"
+            android:text="0"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="/"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/nbQuestions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="1"
             android:textSize="20sp"
             android:textColor="@color/black"
             android:textStyle="bold"/>
@@ -299,7 +318,7 @@
             android:backgroundTint="@android:color/holo_blue_light"
             android:textColor="@android:color/white"
             android:text="Next question"
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="80dp"
             android:layout_marginRight="10dp"
             android:onClick="nextQuestionClick"/>
     </LinearLayout>
