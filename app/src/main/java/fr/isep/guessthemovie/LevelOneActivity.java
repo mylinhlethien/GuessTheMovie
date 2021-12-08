@@ -41,6 +41,7 @@ public class LevelOneActivity extends AppCompatActivity {
     Button answer2Button;
     Button answer3Button;
     Button answer4Button;
+    Button nextQuestionButton;
     ImageView imageActor1;
     ImageView imageActor2;
     ArrayList<Button> allButtons = new ArrayList<Button>();
@@ -68,6 +69,7 @@ public class LevelOneActivity extends AppCompatActivity {
         answer2Button = findViewById(R.id.Answer2button);
         answer3Button = findViewById(R.id.Answer3button);
         answer4Button = findViewById(R.id.Answer4button);
+        nextQuestionButton = findViewById(R.id.nextQuestionButton);
         allButtons.add(answer1Button);
         allButtons.add(answer2Button);
         allButtons.add(answer3Button);
@@ -83,6 +85,10 @@ public class LevelOneActivity extends AppCompatActivity {
             scoreTxt.setText(String.valueOf(score));
         }
 
+        if (nbQuestions == 10) {
+            nextQuestionButton.setText("Finish");
+        }
+
         MovieInterface movieInterface = MovieClass.getMovieInstance().create(MovieInterface.class);
         MovieInterface pictureInterface = PictureClass.getPictureInstance().create(MovieInterface.class);
 
@@ -95,10 +101,6 @@ public class LevelOneActivity extends AppCompatActivity {
         for(int i = 0; i < 20; i++){
             list.add(i);
         }
-
-        //Collections.shuffle(list);
-        //Integer[] randomArray = list.subList(0, 3).toArray(new Integer[3]);
-
 
         int num;
         for(num=0; num<4;num++){
@@ -281,11 +283,24 @@ public class LevelOneActivity extends AppCompatActivity {
     public void nextQuestionClick(View view) {
         Log.d("scoreIntent", String.valueOf(score));
 
-        Intent intent = new Intent(LevelOneActivity.this, LevelOneActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putInt("score", score);
-        intent.putExtras(bundle);
-        startActivity(intent);
-        LevelOneActivity.this.finish();
+        if (nbQuestions < 10) {
+            Intent intent = new Intent(LevelOneActivity.this, LevelOneActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putInt("score", score);
+            intent.putExtras(bundle);
+            startActivity(intent);
+            LevelOneActivity.this.finish();
+        }
+        else {
+            Intent intent = new Intent(this, ScoreActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putInt("score", score);
+            bundle.putInt("nbQuestion", nbQuestions);
+            intent.putExtras(bundle);
+            startActivity(intent);
+            LevelOneActivity.this.finish();
+        }
+
+
     }
 }
