@@ -2,6 +2,7 @@ package fr.isep.guessthemovie;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,6 +35,8 @@ public class LevelOneActivity extends AppCompatActivity {
     TextView actor2Txt;
     TextView character1Txt;
     TextView character2Txt;
+    TextView scoreTxt;
+    TextView nbQuestionsTxt;
     Button answer1Button;
     Button answer2Button;
     Button answer3Button;
@@ -43,8 +46,9 @@ public class LevelOneActivity extends AppCompatActivity {
     ArrayList<Button> allButtons = new ArrayList<Button>();
     String movieTitleAnswer;
     Button correctButtonAnswer;
-    int score;
-    int nbQuestions;
+    static int score;
+    static int nbQuestions;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +56,8 @@ public class LevelOneActivity extends AppCompatActivity {
         setContentView(R.layout.activity_level_one);
         nbQuestions += 1;
 
-        // setText nbQuestions
+        nbQuestionsTxt = findViewById(R.id.nbQuestions);
+        scoreTxt = findViewById(R.id.score);
         releaseDateTxt = findViewById(R.id.releaseDate);
         overviewTxt = findViewById(R.id.overview);
         actor1Txt = findViewById(R.id.nameActor1);
@@ -70,6 +75,14 @@ public class LevelOneActivity extends AppCompatActivity {
         imageActor1 = findViewById(R.id.imageActor1);
         imageActor2 = findViewById(R.id.imageActor2);
 
+        nbQuestionsTxt.setText(String.valueOf(nbQuestions));
+
+        if(getIntent().getExtras() != null) {
+            Bundle extras = getIntent().getExtras();
+            int score = extras.getInt("score");
+            scoreTxt.setText(String.valueOf(score));
+        }
+
         MovieInterface movieInterface = MovieClass.getMovieInstance().create(MovieInterface.class);
         MovieInterface pictureInterface = PictureClass.getPictureInstance().create(MovieInterface.class);
 
@@ -83,29 +96,33 @@ public class LevelOneActivity extends AppCompatActivity {
             list.add(i);
         }
 
-        Collections.shuffle(list);
-        Integer[] randomArray = list.subList(0, 3).toArray(new Integer[3]);
+        //Collections.shuffle(list);
+        //Integer[] randomArray = list.subList(0, 3).toArray(new Integer[3]);
 
 
-        for(Integer num:randomArray){
+        int num;
+        for(num=0; num<4;num++){
                 Log.d("random", String.valueOf(num));
 
                 Call<JsonObject> call = movieInterface.getPopularMovies(randomPageNumber + 1);
                 Log.d("call answers options", String.valueOf(call.request().url()));
+                int finalNum = num;
                 call.enqueue(new Callback<JsonObject>() {
                     @Override
                     public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                         JsonObject res = response.body();
                         JsonElement results = res.get("results");
-                        String answerMovieTitle = results.getAsJsonArray().get(num).getAsJsonObject().get("original_title").getAsString();
+                        String answerMovieTitle = results.getAsJsonArray().get(finalNum).getAsJsonObject().get("original_title").getAsString();
                         Log.d("Answer option movie title", answerMovieTitle);
-                        // display in random button (0-2)
-                        Random r = new Random();
-                        int low = 0; //included
-                        int high = allButtons.size(); //not included
-                        int randomButton = r.nextInt(high-low) + low;
-                        allButtons.get(randomButton).setText(answerMovieTitle);
-                        allButtons.remove(randomButton);
+                        // display in random button (salma)
+                        for (int i=0; i<4;i++){
+                            Button b = allButtons.get(i);
+                            if (b.getText().equals("")){
+                                b.setText(answerMovieTitle);
+                                Log.d("test answer", i+ answerMovieTitle);
+                                break;
+                            }
+                        }
                     }
 
                     @Override
@@ -117,6 +134,15 @@ public class LevelOneActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    private int getRandom (){
+        Random r = new Random();
+        int low = 0; //included
+        int high = 4; //not included
+        int randomNumber = r.nextInt(high-low) + low;
+        Log.d("random button : ", String.valueOf(randomNumber));
+        return randomNumber;
     }
     
     private void getPopularMovies(MovieInterface movieInterface, MovieInterface pictureInterface) {
@@ -219,14 +245,9 @@ public class LevelOneActivity extends AppCompatActivity {
                 releaseDateTxt.setText(releaseDate);
                 overviewTxt.setText(overview);
 
-                // display in random button (0-3)
-                Random r = new Random();
-                int low = 0; //included
-                int high = 3; //not included
-                int randomButton = r.nextInt(high-low) + low;
-                allButtons.get(randomButton).setText(originalTitle);
+                int randomButton = getRandom();
                 correctButtonAnswer = allButtons.get(randomButton);
-                allButtons.remove(randomButton);
+                correctButtonAnswer.setText(originalTitle);
             }
 
             @Override
@@ -244,7 +265,7 @@ public class LevelOneActivity extends AppCompatActivity {
         if (buttonText == movieTitleAnswer) {
             b.setBackgroundColor(Color.GREEN);
             score+=1;
-            //set Text du textView du score
+            scoreTxt.setText(String.valueOf(score));
         }
         else {
             b.setBackgroundColor(Color.RED);
@@ -255,10 +276,16 @@ public class LevelOneActivity extends AppCompatActivity {
         answer2Button.setClickable(false);
         answer3Button.setClickable(false);
         answer4Button.setClickable(false);
-        // update score
     }
 
     public void nextQuestionClick(View view) {
-        //start same activity and pass score and nbQuestions through Intent
+        Log.d("scoreIntent", String.valueOf(score));
+
+        Intent intent = new Intent(LevelOneActivity.this, LevelOneActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt("score", score);
+        intent.putExtras(bundle);
+        startActivity(intent);
+        LevelOneActivity.this.finish();
     }
 }

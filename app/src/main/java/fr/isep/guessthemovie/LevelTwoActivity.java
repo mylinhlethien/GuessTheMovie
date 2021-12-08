@@ -91,7 +91,7 @@ public class LevelTwoActivity extends AppCompatActivity {
                     String answerMovieTitle = results.getAsJsonArray().get(finalNum).getAsJsonObject().get("original_title").getAsString();
                     Log.d("Answer option movie title", answerMovieTitle);
 
-                    // display in random button (salma)
+                    // display in random button
                     for (int i=0; i<4;i++){
                         Button b = allButtons.get(i);
                         if (b.getText().equals("")){
