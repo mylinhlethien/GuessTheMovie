@@ -288,8 +288,9 @@ public class LevelOneActivity extends AppCompatActivity {
             Bundle bundle = new Bundle();
             bundle.putInt("score", score);
             intent.putExtras(bundle);
+            finish();
             startActivity(intent);
-            LevelOneActivity.this.finish();
+            //LevelOneActivity.this.finish();
         }
         else {
             Intent intent = new Intent(this, ScoreActivity.class);
@@ -297,8 +298,9 @@ public class LevelOneActivity extends AppCompatActivity {
             bundle.putInt("score", score);
             bundle.putInt("nbQuestion", nbQuestions);
             intent.putExtras(bundle);
+            finish();
             startActivity(intent);
-            LevelOneActivity.this.finish();
+            //LevelOneActivity.this.finish();
         }
 
 
