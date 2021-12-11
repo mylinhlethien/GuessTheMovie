@@ -61,23 +61,18 @@ public class LevelTwoActivity extends AppCompatActivity {
         MovieInterface movieInterface = MovieClass.getMovieInstance().create(MovieInterface.class);
         MovieInterface pictureInterface = PictureClass.getPictureInstance().create(MovieInterface.class);
 
-        getPopularMoviesLevelTwo(movieInterface, pictureInterface);
+        // define where the correct answer will be
+        int randomButton = getRandom();
+        correctButtonAnswer = allButtons.get(randomButton);
 
+        getPopularMoviesLevelTwo(movieInterface, pictureInterface);
     }
 
 
     private void generateRandomAnswers(MovieInterface movieInterface, int randomPageNumber) {
         // Generate 3 movieIds between 0-19 on the next page as the right answer
-        List<Integer> list = new ArrayList<Integer>();
-        for(int i = 0; i < 20; i++){
-            list.add(i);
-        }
-
-        //Collections.shuffle(list);
-        //Integer[] randomArray = list.subList(0, 3).toArray(new Integer[3]);
-
         int num;
-        for(num=0; num<4;num++){
+        for(num=0; num<3;num++){
             Log.d("random array", String.valueOf(num));
 
             Call<JsonObject> call = movieInterface.getPopularMovies(randomPageNumber + 1);
@@ -92,11 +87,10 @@ public class LevelTwoActivity extends AppCompatActivity {
                     Log.d("Answer option movie title", answerMovieTitle);
 
                     // display in random button
-                    for (int i=0; i<4;i++){
-                        Button b = allButtons.get(i);
-                        if (b.getText().equals("")){
+                    for (Button b: allButtons){
+                        if (b != correctButtonAnswer && b.getText().toString().isEmpty()){
                             b.setText(answerMovieTitle);
-                            Log.d("test answer", i+ answerMovieTitle);
+                            Log.d("test answer", answerMovieTitle);
                             break;
                         }
                     }
@@ -202,8 +196,6 @@ public class LevelTwoActivity extends AppCompatActivity {
                 new DownloadImageTask((ImageView) findViewById(R.id.backdropImageLevelTwo))
                         .execute(String.valueOf(pictureCall2.request().url()));
 
-                int randomButton = getRandom();
-                correctButtonAnswer = allButtons.get(randomButton);
                 correctButtonAnswer.setText(originalTitle);
             }
 

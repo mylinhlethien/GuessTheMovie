@@ -15,8 +15,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 import retrofit2.Call;
@@ -92,19 +90,17 @@ public class LevelOneActivity extends AppCompatActivity {
         MovieInterface movieInterface = MovieClass.getMovieInstance().create(MovieInterface.class);
         MovieInterface pictureInterface = PictureClass.getPictureInstance().create(MovieInterface.class);
 
+        // define where the correct answer will be
+        int randomButton = getRandom();
+        correctButtonAnswer = allButtons.get(randomButton);
         getPopularMovies(movieInterface, pictureInterface);
-
     }
     private void generateRandomAnswers(MovieInterface movieInterface, int randomPageNumber) {
         // Generate 3 movieIds between 0-19 on the next page as the right answer
-        List<Integer> list = new ArrayList<Integer>();
-        for(int i = 0; i < 20; i++){
-            list.add(i);
-        }
 
         int num;
-        for(num=0; num<4;num++){
-                Log.d("random", String.valueOf(num));
+        for(num=0; num<3;num++){
+                Log.d("random movie answer", String.valueOf(num));
 
                 Call<JsonObject> call = movieInterface.getPopularMovies(randomPageNumber + 1);
                 Log.d("call answers options", String.valueOf(call.request().url()));
@@ -116,12 +112,11 @@ public class LevelOneActivity extends AppCompatActivity {
                         JsonElement results = res.get("results");
                         String answerMovieTitle = results.getAsJsonArray().get(finalNum).getAsJsonObject().get("original_title").getAsString();
                         Log.d("Answer option movie title", answerMovieTitle);
-                        // display in random button (salma)
-                        for (int i=0; i<4;i++){
-                            Button b = allButtons.get(i);
-                            if (b.getText().equals("")){
+                        // display in random button
+                        for (Button b: allButtons){
+                            if (b != correctButtonAnswer && b.getText().toString().isEmpty()){
                                 b.setText(answerMovieTitle);
-                                Log.d("test answer", i+ answerMovieTitle);
+                                Log.d("test answer", answerMovieTitle);
                                 break;
                             }
                         }
@@ -196,31 +191,45 @@ public class LevelOneActivity extends AppCompatActivity {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 JsonObject res = response.body();
                 JsonElement cast = res.get("cast");
-                String actorName1 = cast.getAsJsonArray().get(0).getAsJsonObject().get("name").getAsString();
-                String characterName1 = cast.getAsJsonArray().get(0).getAsJsonObject().get("character").getAsString();
-                String actorPicture1 = cast.getAsJsonArray().get(0).getAsJsonObject().get("profile_path").getAsString();
-                Log.d("actorPicture 0 ", String.valueOf(actorPicture1));
 
-                String actorName2 = cast.getAsJsonArray().get(1).getAsJsonObject().get("name").getAsString();
-                String characterName2 = cast.getAsJsonArray().get(1).getAsJsonObject().get("character").getAsString();
-                String actorPicture2 = cast.getAsJsonArray().get(1).getAsJsonObject().get("profile_path").getAsString();
-                Log.d("actorPicture 1 ", String.valueOf(actorPicture2));
+                // check if there are actors in the API
+                if (cast.getAsJsonArray().size() != 0 ) {
+                    String actorName1 = cast.getAsJsonArray().get(0).getAsJsonObject().get("name").getAsString();
+                    String characterName1 = cast.getAsJsonArray().get(0).getAsJsonObject().get("character").getAsString();
 
-                actor1Txt.setText(actorName1);
-                actor2Txt.setText(actorName2);
-                character1Txt.setText(characterName1);
-                character2Txt.setText(characterName2);
+                    String actorName2 = cast.getAsJsonArray().get(1).getAsJsonObject().get("name").getAsString();
+                    String characterName2 = cast.getAsJsonArray().get(1).getAsJsonObject().get("character").getAsString();
 
-                //display picture 1
-                Call<JsonObject> pictureCall = pictureInterface.getMovieActorPicture(actorPicture1);
-                Log.d("picture 1", String.valueOf(call.request().url()));
-                new DownloadImageTask((ImageView) findViewById(R.id.imageActor1))
-                        .execute(String.valueOf(pictureCall.request().url()));
-                //display picture 2
-                Call<JsonObject> pictureCall2 = pictureInterface.getMovieActorPicture(actorPicture2);
-                Log.d("picture 2", String.valueOf(call.request().url()));
-                new DownloadImageTask((ImageView) findViewById(R.id.imageActor2))
-                        .execute(String.valueOf(pictureCall2.request().url()));
+                    actor1Txt.setText(actorName1);
+                    actor2Txt.setText(actorName2);
+                    character1Txt.setText(characterName1);
+                    character2Txt.setText(characterName2);
+
+                    //check if picture path exists for each actor
+                    if (!cast.getAsJsonArray().get(0).getAsJsonObject().get("profile_path").isJsonNull()) {
+                        String actorPicture1 = cast.getAsJsonArray().get(0).getAsJsonObject().get("profile_path").getAsString();
+                        Log.d("actorPicture 0 ", String.valueOf(actorPicture1));
+                        //display picture 1
+                        Call<JsonObject> pictureCall = pictureInterface.getMovieActorPicture(actorPicture1);
+                        Log.d("picture 1", String.valueOf(call.request().url()));
+                        new DownloadImageTask((ImageView) findViewById(R.id.imageActor1))
+                                .execute(String.valueOf(pictureCall.request().url()));
+                    }
+                    if (!cast.getAsJsonArray().get(1).getAsJsonObject().get("profile_path").isJsonNull()) {
+                        String actorPicture2 = cast.getAsJsonArray().get(1).getAsJsonObject().get("profile_path").getAsString();
+                        Log.d("actorPicture 1 ", String.valueOf(actorPicture2));
+                        //display picture 2
+                        Call<JsonObject> pictureCall2 = pictureInterface.getMovieActorPicture(actorPicture2);
+                        Log.d("picture 2", String.valueOf(call.request().url()));
+                        new DownloadImageTask((ImageView) findViewById(R.id.imageActor2))
+                                .execute(String.valueOf(pictureCall2.request().url()));
+                    }
+                }
+                else {
+                    actor1Txt.setText("no actors found");
+                    actor2Txt.setText("no actors found");
+                }
+
             }
 
             @Override
@@ -247,8 +256,6 @@ public class LevelOneActivity extends AppCompatActivity {
                 releaseDateTxt.setText(releaseDate);
                 overviewTxt.setText(overview);
 
-                int randomButton = getRandom();
-                correctButtonAnswer = allButtons.get(randomButton);
                 correctButtonAnswer.setText(originalTitle);
             }
 
@@ -290,7 +297,6 @@ public class LevelOneActivity extends AppCompatActivity {
             intent.putExtras(bundle);
             finish();
             startActivity(intent);
-            //LevelOneActivity.this.finish();
         }
         else {
             Intent intent = new Intent(this, ScoreActivity.class);
@@ -300,7 +306,6 @@ public class LevelOneActivity extends AppCompatActivity {
             intent.putExtras(bundle);
             finish();
             startActivity(intent);
-            //LevelOneActivity.this.finish();
         }
 
 
