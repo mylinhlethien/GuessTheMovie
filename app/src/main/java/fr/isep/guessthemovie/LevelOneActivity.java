@@ -215,6 +215,10 @@ public class LevelOneActivity extends AppCompatActivity {
                         new DownloadImageTask((ImageView) findViewById(R.id.imageActor1))
                                 .execute(String.valueOf(pictureCall.request().url()));
                     }
+                    else {
+                        //afficher "no actor picture available"
+                        Log.d("no actor picture", "no actor picture 1");
+                    }
                     if (!cast.getAsJsonArray().get(1).getAsJsonObject().get("profile_path").isJsonNull()) {
                         String actorPicture2 = cast.getAsJsonArray().get(1).getAsJsonObject().get("profile_path").getAsString();
                         Log.d("actorPicture 1 ", String.valueOf(actorPicture2));
@@ -223,6 +227,10 @@ public class LevelOneActivity extends AppCompatActivity {
                         Log.d("picture 2", String.valueOf(call.request().url()));
                         new DownloadImageTask((ImageView) findViewById(R.id.imageActor2))
                                 .execute(String.valueOf(pictureCall2.request().url()));
+                    }
+                    else {
+                        //afficher "no actor picture available"
+                        Log.d("no actor picture", "no actor picture 2");
                     }
                 }
                 else {

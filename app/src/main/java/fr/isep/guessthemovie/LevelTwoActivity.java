@@ -157,7 +157,6 @@ public class LevelTwoActivity extends AppCompatActivity {
     }
 
 
-
     private void movieDetailsLevelTwo(MovieInterface movieInterface,MovieInterface pictureInterface, int movieId) {
         Call<JsonObject> call = movieInterface.getMovieDetails(movieId);
         Log.d("call movie details level 2", String.valueOf(call.request().url()));
@@ -187,14 +186,19 @@ public class LevelTwoActivity extends AppCompatActivity {
                 releaseDateTxt.setText(String.valueOf(releaseDate));
 
 
-                //display backdrop image of the movie
-                String backdropPicture = res.get("backdrop_path").getAsString();
-                Log.d("backdropPicture", String.valueOf(backdropPicture));
-                //display backdrop movie picture
-                Call<JsonObject> pictureCall2 = pictureInterface.getMovieBackdropPicture(backdropPicture);
-                Log.d("backdropPicture", String.valueOf(call.request().url()));
-                new DownloadImageTask((ImageView) findViewById(R.id.backdropImageLevelTwo))
-                        .execute(String.valueOf(pictureCall2.request().url()));
+                if (!res.get("backdrop_path").isJsonNull()) {
+                    //display backdrop image of the movie
+                    String backdropPicture = res.get("backdrop_path").getAsString();
+                    Log.d("backdropPicture", String.valueOf(backdropPicture));
+                    //display backdrop movie picture
+                    Call<JsonObject> pictureCall2 = pictureInterface.getMovieBackdropPicture(backdropPicture);
+                    Log.d("backdropPicture", String.valueOf(call.request().url()));
+                    new DownloadImageTask((ImageView) findViewById(R.id.backdropImageLevelTwo))
+                            .execute(String.valueOf(pictureCall2.request().url()));
+                }
+                else {
+                    //afficher "no picture available for this movie"
+                }
 
                 correctButtonAnswer.setText(originalTitle);
             }
