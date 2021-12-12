@@ -77,7 +77,8 @@
         android:background="@color/black"
         android:text="BACK TO MENU"
         android:textColor="#ffffff"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:onClick="onClickBackToMenu"/>
 
 
 </LinearLayout>

@@ -2,7 +2,9 @@ package fr.isep.guessthemovie;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class ScoreActivity extends AppCompatActivity {
@@ -25,5 +27,11 @@ public class ScoreActivity extends AppCompatActivity {
             int nbQuestions = extras.getInt("nbQuestion");
             nbQuestionsTxt.setText(String.valueOf(nbQuestions));
         }
+    }
+
+    public void onClickBackToMenu(View view) {
+        Intent intent;
+        intent = new Intent(this, LaunchActivity.class);
+        startActivity(intent);
     }
 }

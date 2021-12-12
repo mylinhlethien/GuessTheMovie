@@ -32,30 +32,52 @@ public class LevelTwoActivity extends AppCompatActivity {
 
     TextView releaseDateTxt;
     TextView movieGenreTxt;
+    TextView scoreTxt;
+    TextView nbQuestionsTxt;
     Button answer1Button;
     Button answer2Button;
     Button answer3Button;
     Button answer4Button;
+    Button nextQuestionButton;
 
     ArrayList<Button> allButtons = new ArrayList<Button>();
     String movieTitleAnswer;
     Button correctButtonAnswer;
+    static int scoreLevelTwo;
+    static int nbQuestionsLevelTwo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_two);
+        nbQuestionsLevelTwo += 1;
 
+        nbQuestionsTxt = findViewById(R.id.nbQuestionsLevelTwo);
         releaseDateTxt = findViewById(R.id.releaseDateLevelTwo);
         movieGenreTxt = findViewById(R.id.movieGenreLevelTwo);
+        scoreTxt = findViewById(R.id.scoreLevelTwo);
         answer1Button = findViewById(R.id.Answer1buttonLevelTwo);
         answer2Button = findViewById(R.id.Answer2buttonLevelTwo);
         answer3Button = findViewById(R.id.Answer3buttonLevelTwo);
         answer4Button = findViewById(R.id.Answer4buttonLevelTwo);
+        nextQuestionButton = findViewById(R.id.nextQuestionButtonLevelTwo);
         allButtons.add(answer1Button);
         allButtons.add(answer2Button);
         allButtons.add(answer3Button);
         allButtons.add(answer4Button);
+
+        nbQuestionsTxt.setText(String.valueOf(nbQuestionsLevelTwo));
+
+        if(getIntent().getExtras() != null) {
+            Bundle extras = getIntent().getExtras();
+            int score = extras.getInt("score");
+            scoreTxt.setText(String.valueOf(score));
+        }
+
+        if (nbQuestionsLevelTwo == 10) {
+            nextQuestionButton.setText("Finish");
+        }
+
 
 
         MovieInterface movieInterface = MovieClass.getMovieInstance().create(MovieInterface.class);
@@ -64,7 +86,6 @@ public class LevelTwoActivity extends AppCompatActivity {
         // define where the correct answer will be
         int randomButton = getRandom();
         correctButtonAnswer = allButtons.get(randomButton);
-
         getPopularMoviesLevelTwo(movieInterface, pictureInterface);
     }
 
@@ -103,7 +124,6 @@ public class LevelTwoActivity extends AppCompatActivity {
 
             });
         }
-
 
     }
 
@@ -198,6 +218,7 @@ public class LevelTwoActivity extends AppCompatActivity {
                 }
                 else {
                     //afficher "no picture available for this movie"
+                    Log.d("no picture available for this movie", "");
                 }
 
                 correctButtonAnswer.setText(originalTitle);
@@ -214,10 +235,11 @@ public class LevelTwoActivity extends AppCompatActivity {
     public void onButtonClick2(View view) {
         Button b = (Button) view;
         String buttonText = b.getText().toString();
-        Log.d("button text", buttonText);
 
         if (buttonText == movieTitleAnswer) {
             b.setBackgroundColor(Color.GREEN);
+            scoreLevelTwo+=1;
+            scoreTxt.setText(String.valueOf(scoreLevelTwo));
         }
         else {
             b.setBackgroundColor(Color.RED);
@@ -228,6 +250,27 @@ public class LevelTwoActivity extends AppCompatActivity {
         answer2Button.setClickable(false);
         answer3Button.setClickable(false);
         answer4Button.setClickable(false);
-        // update score
+    }
+
+    public void nextQuestionClick2(View view) {
+        Log.d("scoreIntent", String.valueOf(scoreLevelTwo));
+
+        if (nbQuestionsLevelTwo < 10) {
+            Intent intent = new Intent(LevelTwoActivity.this, LevelTwoActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putInt("score", scoreLevelTwo);
+            intent.putExtras(bundle);
+            finish();
+            startActivity(intent);
+        }
+        else {
+            Intent intent = new Intent(this, ScoreActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putInt("score", scoreLevelTwo);
+            bundle.putInt("nbQuestion", nbQuestionsLevelTwo);
+            intent.putExtras(bundle);
+            finish();
+            startActivity(intent);
+        }
     }
 }

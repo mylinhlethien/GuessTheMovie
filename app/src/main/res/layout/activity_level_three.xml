@@ -27,7 +27,7 @@
             />
 
         <TextView
-            android:id="@+id/taglineDateLevelThree"
+            android:id="@+id/taglineLevelThree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -123,23 +123,24 @@
         <Button
             android:id="@+id/Answer1buttonLevelThree"
             android:layout_width="0dp"
-            android:layout_height="90dp"
+            android:layout_height="100dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:gravity="left|center_vertical" />
+            android:onClick="onButtonClick3"/>
 
         <!--    android:maxWidth="90dp"-->
 
         <Button
             android:id="@+id/Answer2buttonLevelThree"
             android:layout_width="0dp"
-            android:layout_height="90dp"
+            android:layout_height="100dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:onClick="onButtonClick3"/>
 
     </LinearLayout>
 
@@ -153,20 +154,22 @@
         <Button
             android:id="@+id/Answer3buttonLevelThree"
             android:layout_width="90dp"
-            android:layout_height="90dp"
+            android:layout_height="100dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:onClick="onButtonClick3"/>
 
         <Button
             android:id="@+id/Answer4buttonLevelThree"
             android:layout_width="90dp"
-            android:layout_height="90dp"
+            android:layout_height="100dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:onClick="onButtonClick3"/>
 
     </LinearLayout>
 
@@ -179,37 +182,77 @@
         <Button
             android:id="@+id/Answer5buttonLevelThree"
             android:layout_width="90dp"
-            android:layout_height="90dp"
+            android:layout_height="100dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:onClick="onButtonClick3"/>
 
         <Button
             android:id="@+id/Answer6buttonLevelThree"
             android:layout_width="90dp"
-            android:layout_height="90dp"
+            android:layout_height="100dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:onClick="onButtonClick3"/>
 
     </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right">
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Score:"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/scoreLevelThree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="0"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="/"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/nbQuestionsLevelThree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="1"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
 
         <Button
-            android:id="@+id/nextQuestionButtonLevelTwo"
+            android:id="@+id/nextQuestionButtonLevelThree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/holo_blue_light"
             android:textColor="@android:color/white"
+            android:text="Next question"
+            android:layout_marginLeft="85dp"
             android:layout_marginRight="10dp"
-            android:text="Next question" />
+            android:onClick="nextQuestionClick3" />
     </LinearLayout>
 
 </LinearLayout>
