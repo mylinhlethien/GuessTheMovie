@@ -11,6 +11,7 @@ public class ScoreActivity extends AppCompatActivity {
 
     TextView scoreTxt;
     TextView nbQuestionsTxt;
+    TextView message ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,8 @@ public class ScoreActivity extends AppCompatActivity {
 
         scoreTxt = findViewById(R.id.score);
         nbQuestionsTxt = findViewById(R.id.nbQuestions);
+        message = findViewById(R.id.message);
+
 
         if(getIntent().getExtras() != null) {
             Bundle extras = getIntent().getExtras();
@@ -26,6 +29,12 @@ public class ScoreActivity extends AppCompatActivity {
             scoreTxt.setText(String.valueOf(score));
             int nbQuestions = extras.getInt("nbQuestion");
             nbQuestionsTxt.setText(String.valueOf(nbQuestions));
+            if (score > 5){
+                message.setText("Well done you are a cinema pro;) ");
+            }
+            else {
+                message.setText("You need to watch more movies ! ");
+            }
         }
     }
 
@@ -33,5 +42,7 @@ public class ScoreActivity extends AppCompatActivity {
         Intent intent;
         intent = new Intent(this, LaunchActivity.class);
         startActivity(intent);
+
+
     }
 }
