@@ -50,7 +50,6 @@ public class LevelTwoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_two);
-        nbQuestionsLevelTwo += 1;
 
         nbQuestionsTxt = findViewById(R.id.nbQuestionsLevelTwo);
         releaseDateTxt = findViewById(R.id.releaseDateLevelTwo);
@@ -66,13 +65,18 @@ public class LevelTwoActivity extends AppCompatActivity {
         allButtons.add(answer3Button);
         allButtons.add(answer4Button);
 
-        nbQuestionsTxt.setText(String.valueOf(nbQuestionsLevelTwo));
-
         if(getIntent().getExtras() != null) {
             Bundle extras = getIntent().getExtras();
             int score = extras.getInt("score");
             scoreTxt.setText(String.valueOf(score));
         }
+        else {
+            scoreLevelTwo = 0;
+            nbQuestionsLevelTwo = 0;
+        }
+
+        nbQuestionsLevelTwo += 1;
+        nbQuestionsTxt.setText(String.valueOf(nbQuestionsLevelTwo));
 
         if (nbQuestionsLevelTwo == 10) {
             nextQuestionButton.setText("Finish");

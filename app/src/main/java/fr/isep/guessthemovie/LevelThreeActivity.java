@@ -53,7 +53,6 @@ public class LevelThreeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_three);
-        nbQuestionsLevelThree += 1;
 
         movieGenreTxt = findViewById(R.id.movieGenreLevelThree);
         movieTaglineTxt = findViewById(R.id.taglineLevelThree);
@@ -75,13 +74,19 @@ public class LevelThreeActivity extends AppCompatActivity {
         allButtons.add(answer5Button);
         allButtons.add(answer6Button);
 
-        nbQuestionsTxt.setText(String.valueOf(nbQuestionsLevelThree));
 
         if(getIntent().getExtras() != null) {
             Bundle extras = getIntent().getExtras();
             int score = extras.getInt("score");
             scoreTxt.setText(String.valueOf(score));
         }
+        else {
+            scoreLevelThree = 0;
+            nbQuestionsLevelThree = 0;
+        }
+
+        nbQuestionsLevelThree += 1;
+        nbQuestionsTxt.setText(String.valueOf(nbQuestionsLevelThree));
 
         if (nbQuestionsLevelThree == 10) {
             nextQuestionButton.setText("Finish");
@@ -156,10 +161,15 @@ public class LevelThreeActivity extends AppCompatActivity {
                 String originalTitle = res.get("original_title").getAsString();
                 movieTitleAnswer = originalTitle;
 
-                //get movie tagline
-                JsonElement movieTagline = res.get("tagline");
-                Log.d("Movie tagline", String.valueOf(movieTagline));
-                movieTaglineTxt.setText(movieTagline.toString());
+                //get movie tagline, check if not JsonNull
+                if (!res.get("tagline").isJsonNull()) {
+                    JsonElement movieTagline = res.get("tagline");
+                    Log.d("Movie tagline", String.valueOf(movieTagline));
+                    movieTaglineTxt.setText(movieTagline.toString());
+                }
+                else {
+                    movieTaglineTxt.setText("no tagline found");
+                }
 
                 //get movie genres
                 JsonArray movieGenre = res.get("genres").getAsJsonArray();

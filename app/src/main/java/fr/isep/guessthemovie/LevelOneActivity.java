@@ -53,7 +53,6 @@ public class LevelOneActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_one);
-        nbQuestions += 1;
 
         nbQuestionsTxt = findViewById(R.id.nbQuestions);
         scoreTxt = findViewById(R.id.score);
@@ -75,13 +74,19 @@ public class LevelOneActivity extends AppCompatActivity {
         imageActor1 = findViewById(R.id.imageActor1);
         imageActor2 = findViewById(R.id.imageActor2);
 
-        nbQuestionsTxt.setText(String.valueOf(nbQuestions));
 
         if(getIntent().getExtras() != null) {
             Bundle extras = getIntent().getExtras();
             int score = extras.getInt("score");
             scoreTxt.setText(String.valueOf(score));
         }
+        else {
+            score = 0;
+            nbQuestions = 0;
+        }
+
+        nbQuestions += 1;
+        nbQuestionsTxt.setText(String.valueOf(nbQuestions));
 
         if (nbQuestions == 10) {
             nextQuestionButton.setText("Finish");
@@ -256,13 +261,22 @@ public class LevelOneActivity extends AppCompatActivity {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 JsonObject res = response.body();
                 String originalTitle = res.get("original_title").getAsString();
-                String overview = res.get("overview").getAsString();
                 String releaseDate = res.get("release_date").getAsString();
+
+                //check if overview not null
+                if (!res.get("overview").isJsonNull()) {
+                    String overview = res.get("overview").getAsString();
+                    overviewTxt.setText(overview);
+                }
+                else {
+                    overviewTxt.setText("no overview found");
+                }
+
                 Log.d("title", originalTitle);
                 movieTitleAnswer = originalTitle;
 
                 releaseDateTxt.setText(releaseDate);
-                overviewTxt.setText(overview);
+
 
                 correctButtonAnswer.setText(originalTitle);
             }
