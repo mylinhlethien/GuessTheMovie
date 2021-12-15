@@ -87,7 +87,7 @@ public class LevelTwoActivity extends AppCompatActivity {
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
-            params.setMargins(450, 0, 0, 0);
+            params.setMargins(400, 0, 0, 0);
             nextQuestionButton.setLayoutParams(params);
         }
 
