@@ -282,6 +282,8 @@ public class LevelThreeActivity extends AppCompatActivity {
         answer4Button.setClickable(false);
         answer5Button.setClickable(false);
         answer6Button.setClickable(false);
+        // enable nextQuestion button
+        nextQuestionButton.setEnabled(true);
     }
 
     public void nextQuestionClick3(View view) {

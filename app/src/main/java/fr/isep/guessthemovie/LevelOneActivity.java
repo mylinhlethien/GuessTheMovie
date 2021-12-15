@@ -307,6 +307,8 @@ public class LevelOneActivity extends AppCompatActivity {
         answer2Button.setClickable(false);
         answer3Button.setClickable(false);
         answer4Button.setClickable(false);
+        // enable nextQuestion button
+        nextQuestionButton.setEnabled(true);
     }
 
     public void nextQuestionClick(View view) {

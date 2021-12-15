@@ -30,7 +30,7 @@ public class ScoreActivity extends AppCompatActivity {
             int nbQuestions = extras.getInt("nbQuestion");
             nbQuestionsTxt.setText(String.valueOf(nbQuestions));
             if (score > 5){
-                message.setText("Well done you are a cinema pro;) ");
+                message.setText("Well done you are a cinema pro ;)");
             }
             else {
                 message.setText("You need to watch more movies ! ");
