@@ -26,7 +26,7 @@ import retrofitPackage.MovieInterface;
 import retrofitPackage.MovieClass;
 import retrofitPackage.PictureClass;
 
-public class LevelOneActivity extends AppCompatActivity {
+public class IntermediateActivity extends AppCompatActivity {
 
     TextView releaseDateTxt;
     TextView overviewTxt;
@@ -53,27 +53,27 @@ public class LevelOneActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_level_one);
+        setContentView(R.layout.activity_intermediate);
 
-        nbQuestionsTxt = findViewById(R.id.nbQuestions);
-        scoreTxt = findViewById(R.id.score);
-        releaseDateTxt = findViewById(R.id.releaseDate);
-        overviewTxt = findViewById(R.id.overview);
-        actor1Txt = findViewById(R.id.nameActor1);
-        actor2Txt = findViewById(R.id.nameActor2);
-        character1Txt = findViewById(R.id.nameCharacter1);
-        character2Txt = findViewById(R.id.nameCharacter2);
-        answer1Button = findViewById(R.id.Answer1button);
-        answer2Button = findViewById(R.id.Answer2button);
-        answer3Button = findViewById(R.id.Answer3button);
-        answer4Button = findViewById(R.id.Answer4button);
-        nextQuestionButton = findViewById(R.id.nextQuestionButton);
+        nbQuestionsTxt = findViewById(R.id.nbQuestionsIntermediateLevel);
+        scoreTxt = findViewById(R.id.scoreIntermediateLevel);
+        releaseDateTxt = findViewById(R.id.releaseDateIntermediateLevel);
+        overviewTxt = findViewById(R.id.overviewIntermediateLevel);
+        actor1Txt = findViewById(R.id.nameActor1IntermediateLevel);
+        actor2Txt = findViewById(R.id.nameActor2IntermediateLevel);
+        character1Txt = findViewById(R.id.nameCharacter1IntermediateLevel);
+        character2Txt = findViewById(R.id.nameCharacter2IntermediateLevel);
+        answer1Button = findViewById(R.id.Answer1buttonIntermediateLevel);
+        answer2Button = findViewById(R.id.Answer2buttonIntermediateLevel);
+        answer3Button = findViewById(R.id.Answer3buttonIntermediateLevel);
+        answer4Button = findViewById(R.id.Answer4buttonIntermediateLevel);
+        nextQuestionButton = findViewById(R.id.nextQuestionButtonIntermediateLevel);
         allButtons.add(answer1Button);
         allButtons.add(answer2Button);
         allButtons.add(answer3Button);
         allButtons.add(answer4Button);
-        imageActor1 = findViewById(R.id.imageActor1);
-        imageActor2 = findViewById(R.id.imageActor2);
+        imageActor1 = findViewById(R.id.imageActor1IntermediateLevel);
+        imageActor2 = findViewById(R.id.imageActor2IntermediateLevel);
 
 
         if(getIntent().getExtras() != null) {
@@ -322,7 +322,7 @@ public class LevelOneActivity extends AppCompatActivity {
         Log.d("scoreIntent", String.valueOf(score));
 
         if (nbQuestions < 10) {
-            Intent intent = new Intent(LevelOneActivity.this, LevelOneActivity.class);
+            Intent intent = new Intent(IntermediateActivity.this, IntermediateActivity.class);
             Bundle bundle = new Bundle();
             bundle.putInt("score", score);
             intent.putExtras(bundle);

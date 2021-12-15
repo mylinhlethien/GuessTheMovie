@@ -4,10 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 
 public class LaunchActivity extends AppCompatActivity {
@@ -28,13 +26,13 @@ public class LaunchActivity extends AppCompatActivity {
     public void onButtonClick(View view) {
         Intent intent;
         if (levelDifficulty.getSelectedItem().toString() == "Beginner") {
-            intent = new Intent(this, LevelTwoActivity.class);
+            intent = new Intent(this, BeginnerActivity.class);
         }
         else if (levelDifficulty.getSelectedItem().toString() == "Intermediate") {
-            intent = new Intent(this, LevelOneActivity.class);
+            intent = new Intent(this, IntermediateActivity.class);
         }
         else {
-            intent = new Intent(this, LevelThreeActivity.class);
+            intent = new Intent(this, ExpertActivity.class);
         }
         startActivity(intent);
     }

@@ -2,7 +2,6 @@ package fr.isep.guessthemovie;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -18,7 +17,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import retrofit2.Call;
@@ -29,7 +27,7 @@ import retrofitPackage.MovieClass;
 import retrofitPackage.MovieInterface;
 import retrofitPackage.PictureClass;
 
-public class LevelTwoActivity extends AppCompatActivity {
+public class BeginnerActivity extends AppCompatActivity {
 
     TextView releaseDateTxt;
     TextView movieGenreTxt;
@@ -45,24 +43,24 @@ public class LevelTwoActivity extends AppCompatActivity {
     ArrayList<Button> allButtons = new ArrayList<Button>();
     String movieTitleAnswer;
     Button correctButtonAnswer;
-    static int scoreLevelTwo;
-    static int nbQuestionsLevelTwo;
+    static int score;
+    static int nbQuestions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_level_two);
+        setContentView(R.layout.activity_beginner);
 
-        nbQuestionsTxt = findViewById(R.id.nbQuestionsLevelTwo);
-        releaseDateTxt = findViewById(R.id.releaseDateLevelTwo);
-        movieGenreTxt = findViewById(R.id.movieGenreLevelTwo);
-        scoreTxt = findViewById(R.id.scoreLevelTwo);
-        answer1Button = findViewById(R.id.Answer1buttonLevelTwo);
-        answer2Button = findViewById(R.id.Answer2buttonLevelTwo);
-        answer3Button = findViewById(R.id.Answer3buttonLevelTwo);
-        answer4Button = findViewById(R.id.Answer4buttonLevelTwo);
-        nextQuestionButton = findViewById(R.id.nextQuestionButtonLevelTwo);
-        backdropImage = findViewById(R.id.backdropImageLevelTwo);
+        nbQuestionsTxt = findViewById(R.id.nbQuestionsBeginnerLevel);
+        releaseDateTxt = findViewById(R.id.releaseDateBeginnerLevel);
+        movieGenreTxt = findViewById(R.id.movieGenreBeginnerLevel);
+        scoreTxt = findViewById(R.id.scoreBeginnerLevel);
+        answer1Button = findViewById(R.id.Answer1buttonBeginnerLevel);
+        answer2Button = findViewById(R.id.Answer2buttonBeginnerLevel);
+        answer3Button = findViewById(R.id.Answer3buttonBeginnerLevel);
+        answer4Button = findViewById(R.id.Answer4buttonBeginnerLevel);
+        nextQuestionButton = findViewById(R.id.nextQuestionButtonBeginnerLevel);
+        backdropImage = findViewById(R.id.backdropImageBeginnerLevel);
         allButtons.add(answer1Button);
         allButtons.add(answer2Button);
         allButtons.add(answer3Button);
@@ -74,14 +72,14 @@ public class LevelTwoActivity extends AppCompatActivity {
             scoreTxt.setText(String.valueOf(score));
         }
         else {
-            scoreLevelTwo = 0;
-            nbQuestionsLevelTwo = 0;
+            score = 0;
+            nbQuestions = 0;
         }
 
-        nbQuestionsLevelTwo += 1;
-        nbQuestionsTxt.setText(String.valueOf(nbQuestionsLevelTwo));
+        nbQuestions += 1;
+        nbQuestionsTxt.setText(String.valueOf(nbQuestions));
 
-        if (nbQuestionsLevelTwo == 10) {
+        if (nbQuestions == 10) {
             nextQuestionButton.setText("Finish");
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -257,8 +255,8 @@ public class LevelTwoActivity extends AppCompatActivity {
 
         if (buttonText == movieTitleAnswer) {
             b.setBackgroundColor(Color.GREEN);
-            scoreLevelTwo+=1;
-            scoreTxt.setText(String.valueOf(scoreLevelTwo));
+            score +=1;
+            scoreTxt.setText(String.valueOf(score));
         }
         else {
             b.setBackgroundColor(Color.RED);
@@ -274,12 +272,12 @@ public class LevelTwoActivity extends AppCompatActivity {
     }
 
     public void nextQuestionClick2(View view) {
-        Log.d("scoreIntent", String.valueOf(scoreLevelTwo));
+        Log.d("scoreIntent", String.valueOf(score));
 
-        if (nbQuestionsLevelTwo < 10) {
-            Intent intent = new Intent(LevelTwoActivity.this, LevelTwoActivity.class);
+        if (nbQuestions < 10) {
+            Intent intent = new Intent(BeginnerActivity.this, BeginnerActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putInt("score", scoreLevelTwo);
+            bundle.putInt("score", score);
             intent.putExtras(bundle);
             finish();
             startActivity(intent);
@@ -287,8 +285,8 @@ public class LevelTwoActivity extends AppCompatActivity {
         else {
             Intent intent = new Intent(this, ScoreActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putInt("score", scoreLevelTwo);
-            bundle.putInt("nbQuestion", nbQuestionsLevelTwo);
+            bundle.putInt("score", score);
+            bundle.putInt("nbQuestion", nbQuestions);
             intent.putExtras(bundle);
             finish();
             startActivity(intent);

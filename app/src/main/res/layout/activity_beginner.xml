@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:weightSum="2"
-    tools:context=".LevelTwoActivity">
+    tools:context=".BeginnerActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
         android:baselineAligned="false">
 
         <ImageView
-            android:id="@+id/backdropImageLevelTwo"
+            android:id="@+id/backdropImageBeginnerLevel"
             android:layout_width="wrap_content"
             android:layout_height="250dp"
             android:contentDescription="Backdrop Image Level Two"
@@ -34,7 +34,7 @@
         >
 
         <TextView
-            android:id="@+id/releaseDateLabelLevelTwo"
+            android:id="@+id/releaseDateLabelBeginnerLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -44,7 +44,7 @@
             />
 
         <TextView
-            android:id="@+id/releaseDateLevelTwo"
+            android:id="@+id/releaseDateBeginnerLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -59,7 +59,7 @@
         >
 
         <TextView
-            android:id="@+id/movieGenreLabelLevelTwo"
+            android:id="@+id/movieGenreLabelBeginnerLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -69,7 +69,7 @@
             />
 
         <TextView
-            android:id="@+id/movieGenreLevelTwo"
+            android:id="@+id/movieGenreBeginnerLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -86,7 +86,7 @@
         android:baselineAligned="false">
 
         <Button
-            android:id="@+id/Answer1buttonLevelTwo"
+            android:id="@+id/Answer1buttonBeginnerLevel"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_marginLeft="10dp"
@@ -97,7 +97,7 @@
         <!--    android:maxWidth="90dp"-->
 
         <Button
-            android:id="@+id/Answer2buttonLevelTwo"
+            android:id="@+id/Answer2buttonBeginnerLevel"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_marginLeft="10dp"
@@ -115,7 +115,7 @@
         android:baselineAligned="false">
 
         <Button
-            android:id="@+id/Answer3buttonLevelTwo"
+            android:id="@+id/Answer3buttonBeginnerLevel"
             android:layout_width="90dp"
             android:layout_height="100dp"
             android:layout_marginLeft="10dp"
@@ -124,7 +124,7 @@
             android:onClick="onButtonClick2"/>
 
         <Button
-            android:id="@+id/Answer4buttonLevelTwo"
+            android:id="@+id/Answer4buttonBeginnerLevel"
             android:layout_width="90dp"
             android:layout_height="100dp"
             android:layout_marginLeft="10dp"
@@ -148,7 +148,7 @@
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/scoreLevelTwo"
+            android:id="@+id/scoreBeginnerLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -167,7 +167,7 @@
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/nbQuestionsLevelTwo"
+            android:id="@+id/nbQuestionsBeginnerLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -177,7 +177,7 @@
             android:textStyle="bold"/>
 
         <Button
-            android:id="@+id/nextQuestionButtonLevelTwo"
+            android:id="@+id/nextQuestionButtonBeginnerLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/holo_blue_light"

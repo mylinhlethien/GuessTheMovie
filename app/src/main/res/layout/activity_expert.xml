@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:weightSum="2"
-    tools:context=".LevelThreeActivity">
+    tools:context=".ExpertActivity">
 
 
 
@@ -17,7 +17,7 @@
         >
 
         <TextView
-            android:id="@+id/taglineLabelLevelThree"
+            android:id="@+id/taglineLabelExpertLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -27,7 +27,7 @@
             />
 
         <TextView
-            android:id="@+id/taglineLevelThree"
+            android:id="@+id/taglineExpertLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -44,7 +44,7 @@
         >
 
         <TextView
-            android:id="@+id/movieGenreLabelLevelThree"
+            android:id="@+id/movieGenreLabelExpertLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -54,7 +54,7 @@
             />
 
         <TextView
-            android:id="@+id/movieGenreLevelThree"
+            android:id="@+id/movieGenreExpertLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -71,7 +71,7 @@
         >
 
         <TextView
-            android:id="@+id/actorName1LabelLevelThree"
+            android:id="@+id/actorName1LabelExpertLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -81,7 +81,7 @@
             />
 
         <TextView
-            android:id="@+id/actorName1LevelThree"
+            android:id="@+id/actorName1ExpertLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -96,7 +96,7 @@
         >
 
         <TextView
-            android:id="@+id/actorName2LabelLevelThree"
+            android:id="@+id/actorName2LabelExpertLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -106,7 +106,7 @@
             />
 
         <TextView
-            android:id="@+id/actorName2LevelThree"
+            android:id="@+id/actorName2ExpertLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -121,7 +121,7 @@
         android:baselineAligned="false">
 
         <Button
-            android:id="@+id/Answer1buttonLevelThree"
+            android:id="@+id/Answer1buttonExpertLevel"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_marginLeft="10dp"
@@ -132,7 +132,7 @@
         <!--    android:maxWidth="90dp"-->
 
         <Button
-            android:id="@+id/Answer2buttonLevelThree"
+            android:id="@+id/Answer2buttonExpertLevel"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_marginLeft="10dp"
@@ -150,7 +150,7 @@
         android:baselineAligned="false">
 
         <Button
-            android:id="@+id/Answer3buttonLevelThree"
+            android:id="@+id/Answer3buttonExpertLevel"
             android:layout_width="90dp"
             android:layout_height="100dp"
             android:layout_marginLeft="10dp"
@@ -159,7 +159,7 @@
             android:onClick="onButtonClick3"/>
 
         <Button
-            android:id="@+id/Answer4buttonLevelThree"
+            android:id="@+id/Answer4buttonExpertLevel"
             android:layout_width="90dp"
             android:layout_height="100dp"
             android:layout_marginLeft="10dp"
@@ -176,7 +176,7 @@
         android:baselineAligned="false">
 
         <Button
-            android:id="@+id/Answer5buttonLevelThree"
+            android:id="@+id/Answer5buttonExpertLevel"
             android:layout_width="90dp"
             android:layout_height="100dp"
             android:layout_marginLeft="10dp"
@@ -185,7 +185,7 @@
             android:onClick="onButtonClick3"/>
 
         <Button
-            android:id="@+id/Answer6buttonLevelThree"
+            android:id="@+id/Answer6buttonExpertLevel"
             android:layout_width="90dp"
             android:layout_height="100dp"
             android:layout_marginLeft="10dp"
@@ -209,7 +209,7 @@
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/scoreLevelThree"
+            android:id="@+id/scoreExpertLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -228,7 +228,7 @@
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/nbQuestionsLevelThree"
+            android:id="@+id/nbQuestionsExpertLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -238,7 +238,7 @@
             android:textStyle="bold"/>
 
         <Button
-            android:id="@+id/nextQuestionButtonLevelThree"
+            android:id="@+id/nextQuestionButtonExpertLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/holo_blue_light"

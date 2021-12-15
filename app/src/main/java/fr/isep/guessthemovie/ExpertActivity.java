@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,12 +21,10 @@ import java.util.Random;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofitPackage.DownloadImageTask;
 import retrofitPackage.MovieClass;
 import retrofitPackage.MovieInterface;
-import retrofitPackage.PictureClass;
 
-public class LevelThreeActivity extends AppCompatActivity {
+public class ExpertActivity extends AppCompatActivity {
 
     TextView movieGenreTxt;
     TextView scoreTxt;
@@ -43,8 +40,8 @@ public class LevelThreeActivity extends AppCompatActivity {
     Button answer6Button;
     Button nextQuestionButton;
     Button correctButtonAnswer;
-    static int scoreLevelThree;
-    static int nbQuestionsLevelThree;
+    static int score;
+    static int nbQuestions;
 
     ArrayList<Button> allButtons = new ArrayList<Button>();
     String movieTitleAnswer;
@@ -53,21 +50,21 @@ public class LevelThreeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_level_three);
+        setContentView(R.layout.activity_expert);
 
-        movieGenreTxt = findViewById(R.id.movieGenreLevelThree);
-        movieTaglineTxt = findViewById(R.id.taglineLevelThree);
-        nbQuestionsTxt = findViewById(R.id.nbQuestionsLevelThree);
-        scoreTxt = findViewById(R.id.scoreLevelThree);
-        actor1Txt = findViewById(R.id.actorName1LevelThree);
-        actor2Txt = findViewById(R.id.actorName2LevelThree);
-        answer1Button = findViewById(R.id.Answer1buttonLevelThree);
-        answer2Button = findViewById(R.id.Answer2buttonLevelThree);
-        answer3Button = findViewById(R.id.Answer3buttonLevelThree);
-        answer4Button = findViewById(R.id.Answer4buttonLevelThree);
-        answer5Button = findViewById(R.id.Answer5buttonLevelThree);
-        answer6Button = findViewById(R.id.Answer6buttonLevelThree);
-        nextQuestionButton = findViewById(R.id.nextQuestionButtonLevelThree);
+        movieGenreTxt = findViewById(R.id.movieGenreExpertLevel);
+        movieTaglineTxt = findViewById(R.id.taglineExpertLevel);
+        nbQuestionsTxt = findViewById(R.id.nbQuestionsExpertLevel);
+        scoreTxt = findViewById(R.id.scoreExpertLevel);
+        actor1Txt = findViewById(R.id.actorName1ExpertLevel);
+        actor2Txt = findViewById(R.id.actorName2ExpertLevel);
+        answer1Button = findViewById(R.id.Answer1buttonExpertLevel);
+        answer2Button = findViewById(R.id.Answer2buttonExpertLevel);
+        answer3Button = findViewById(R.id.Answer3buttonExpertLevel);
+        answer4Button = findViewById(R.id.Answer4buttonExpertLevel);
+        answer5Button = findViewById(R.id.Answer5buttonExpertLevel);
+        answer6Button = findViewById(R.id.Answer6buttonExpertLevel);
+        nextQuestionButton = findViewById(R.id.nextQuestionButtonExpertLevel);
         allButtons.add(answer1Button);
         allButtons.add(answer2Button);
         allButtons.add(answer3Button);
@@ -82,14 +79,14 @@ public class LevelThreeActivity extends AppCompatActivity {
             scoreTxt.setText(String.valueOf(score));
         }
         else {
-            scoreLevelThree = 0;
-            nbQuestionsLevelThree = 0;
+            score = 0;
+            nbQuestions = 0;
         }
 
-        nbQuestionsLevelThree += 1;
-        nbQuestionsTxt.setText(String.valueOf(nbQuestionsLevelThree));
+        nbQuestions += 1;
+        nbQuestionsTxt.setText(String.valueOf(nbQuestions));
 
-        if (nbQuestionsLevelThree == 10) {
+        if (nbQuestions == 10) {
             nextQuestionButton.setText("Finish");
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -275,8 +272,8 @@ public class LevelThreeActivity extends AppCompatActivity {
 
         if (buttonText == movieTitleAnswer) {
             b.setBackgroundColor(Color.GREEN);
-            scoreLevelThree+=1;
-            scoreTxt.setText(String.valueOf(scoreLevelThree));
+            score +=1;
+            scoreTxt.setText(String.valueOf(score));
         }
         else {
             b.setBackgroundColor(Color.RED);
@@ -294,12 +291,12 @@ public class LevelThreeActivity extends AppCompatActivity {
     }
 
     public void nextQuestionClick3(View view) {
-        Log.d("scoreIntent", String.valueOf(scoreLevelThree));
+        Log.d("scoreIntent", String.valueOf(score));
 
-        if (nbQuestionsLevelThree < 10) {
-            Intent intent = new Intent(LevelThreeActivity.this, LevelThreeActivity.class);
+        if (nbQuestions < 10) {
+            Intent intent = new Intent(ExpertActivity.this, ExpertActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putInt("score", scoreLevelThree);
+            bundle.putInt("score", score);
             intent.putExtras(bundle);
             finish();
             startActivity(intent);
@@ -307,8 +304,8 @@ public class LevelThreeActivity extends AppCompatActivity {
         else {
             Intent intent = new Intent(this, ScoreActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putInt("score", scoreLevelThree);
-            bundle.putInt("nbQuestion", nbQuestionsLevelThree);
+            bundle.putInt("score", score);
+            bundle.putInt("nbQuestion", nbQuestions);
             intent.putExtras(bundle);
             finish();
             startActivity(intent);

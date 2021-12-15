@@ -15,13 +15,13 @@
             android:name=".ScoreActivity"
             android:exported="true" />
         <activity
-            android:name=".LevelThreeActivity"
+            android:name=".ExpertActivity"
             android:exported="true" />
         <activity
-            android:name=".LevelTwoActivity"
+            android:name=".BeginnerActivity"
             android:exported="true" />
         <activity
-            android:name=".LevelOneActivity"
+            android:name=".IntermediateActivity"
             android:exported="true" />
         <activity
             android:name=".LaunchActivity"
