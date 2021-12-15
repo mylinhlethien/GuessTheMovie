@@ -224,12 +224,12 @@ public class LevelOneActivity extends AppCompatActivity {
                         //display picture 1
                         Call<JsonObject> pictureCall = pictureInterface.getMovieActorPicture(actorPicture1);
                         Log.d("picture 1", String.valueOf(call.request().url()));
-                        new DownloadImageTask((ImageView) findViewById(R.id.imageActor1))
+                        new DownloadImageTask(imageActor1)
                                 .execute(String.valueOf(pictureCall.request().url()));
                     }
                     else {
-                        //afficher "no actor picture available"
-                        Log.d("no actor picture", "no actor picture 1");
+                        //no actor picture available
+                        imageActor1.setImageResource(R.drawable.noimageavailable);
                     }
                     if (!cast.getAsJsonArray().get(1).getAsJsonObject().get("profile_path").isJsonNull()) {
                         String actorPicture2 = cast.getAsJsonArray().get(1).getAsJsonObject().get("profile_path").getAsString();
@@ -237,12 +237,12 @@ public class LevelOneActivity extends AppCompatActivity {
                         //display picture 2
                         Call<JsonObject> pictureCall2 = pictureInterface.getMovieActorPicture(actorPicture2);
                         Log.d("picture 2", String.valueOf(call.request().url()));
-                        new DownloadImageTask((ImageView) findViewById(R.id.imageActor2))
+                        new DownloadImageTask(imageActor2)
                                 .execute(String.valueOf(pictureCall2.request().url()));
                     }
                     else {
-                        //afficher "no actor picture available"
-                        Log.d("no actor picture", "no actor picture 2");
+                        //no actor picture available
+                        imageActor2.setImageResource(R.drawable.noimageavailable);
                     }
                 }
                 else {

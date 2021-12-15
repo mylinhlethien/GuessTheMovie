@@ -28,10 +28,10 @@ public class LaunchActivity extends AppCompatActivity {
     public void onButtonClick(View view) {
         Intent intent;
         if (levelDifficulty.getSelectedItem().toString() == "Beginner") {
-            intent = new Intent(this, LevelOneActivity.class);
+            intent = new Intent(this, LevelTwoActivity.class);
         }
         else if (levelDifficulty.getSelectedItem().toString() == "Intermediate") {
-            intent = new Intent(this, LevelTwoActivity.class);
+            intent = new Intent(this, LevelOneActivity.class);
         }
         else {
             intent = new Intent(this, LevelThreeActivity.class);
