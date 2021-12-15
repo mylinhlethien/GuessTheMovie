@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.JsonElement;
@@ -90,6 +91,12 @@ public class LevelOneActivity extends AppCompatActivity {
 
         if (nbQuestions == 10) {
             nextQuestionButton.setText("Finish");
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+            params.setMargins(450, 0, 0, 0);
+            nextQuestionButton.setLayoutParams(params);
         }
 
         MovieInterface movieInterface = MovieClass.getMovieInstance().create(MovieInterface.class);
