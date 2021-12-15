@@ -39,6 +39,7 @@ public class LevelTwoActivity extends AppCompatActivity {
     Button answer3Button;
     Button answer4Button;
     Button nextQuestionButton;
+    ImageView backdropImage;
 
     ArrayList<Button> allButtons = new ArrayList<Button>();
     String movieTitleAnswer;
@@ -60,6 +61,7 @@ public class LevelTwoActivity extends AppCompatActivity {
         answer3Button = findViewById(R.id.Answer3buttonLevelTwo);
         answer4Button = findViewById(R.id.Answer4buttonLevelTwo);
         nextQuestionButton = findViewById(R.id.nextQuestionButtonLevelTwo);
+        backdropImage = findViewById(R.id.backdropImageLevelTwo);
         allButtons.add(answer1Button);
         allButtons.add(answer2Button);
         allButtons.add(answer3Button);
@@ -206,8 +208,14 @@ public class LevelTwoActivity extends AppCompatActivity {
                 movieGenreTxt.setText(genre);
 
                 //display release date of the movie
-                String releaseDate = res.get("release_date").getAsString();
-                releaseDateTxt.setText(String.valueOf(releaseDate));
+                if (!res.get("release_date").getAsString().isEmpty() && !res.get("release_date").isJsonNull()) {
+                    String releaseDate = res.get("release_date").getAsString();
+                    releaseDateTxt.setText(String.valueOf(releaseDate));
+                }
+                else {
+                    releaseDateTxt.setText("no release date available");
+                }
+
 
 
                 if (!res.get("backdrop_path").isJsonNull()) {
@@ -217,12 +225,12 @@ public class LevelTwoActivity extends AppCompatActivity {
                     //display backdrop movie picture
                     Call<JsonObject> pictureCall2 = pictureInterface.getMovieBackdropPicture(backdropPicture);
                     Log.d("backdropPicture", String.valueOf(call.request().url()));
-                    new DownloadImageTask((ImageView) findViewById(R.id.backdropImageLevelTwo))
+                    new DownloadImageTask(backdropImage)
                             .execute(String.valueOf(pictureCall2.request().url()));
                 }
                 else {
-                    //afficher "no picture available for this movie"
-                    Log.d("no picture available for this movie", "");
+                    //no picture available for this movie
+                    backdropImage.setImageResource(R.drawable.noimage);
                 }
 
                 correctButtonAnswer.setText(originalTitle);

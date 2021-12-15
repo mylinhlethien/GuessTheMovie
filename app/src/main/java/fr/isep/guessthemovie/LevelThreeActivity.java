@@ -161,8 +161,8 @@ public class LevelThreeActivity extends AppCompatActivity {
                 String originalTitle = res.get("original_title").getAsString();
                 movieTitleAnswer = originalTitle;
 
-                //get movie tagline, check if not JsonNull
-                if (!res.get("tagline").isJsonNull()) {
+                //get movie tagline, check if not JsonNull and not empty
+                if (!res.get("tagline").isJsonNull() && !res.get("tagline").getAsString().isEmpty()) {
                     JsonElement movieTagline = res.get("tagline");
                     Log.d("Movie tagline", String.valueOf(movieTagline));
                     movieTaglineTxt.setText(movieTagline.toString());
