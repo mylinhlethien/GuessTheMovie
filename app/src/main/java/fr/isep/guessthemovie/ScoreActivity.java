@@ -33,7 +33,7 @@ public class ScoreActivity extends AppCompatActivity {
                 message.setText("You need to watch more movies! ");
             }
             else if (score > 3 && score <=6) {
-                message.setText("well done, you have an average movie culture");
+                message.setText("Well done, you have an average movie culture");
             }
             else {
                 message.setText("WOW! you are a movie expert ;) ");

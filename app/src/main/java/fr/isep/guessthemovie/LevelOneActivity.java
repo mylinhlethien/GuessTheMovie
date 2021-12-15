@@ -331,7 +331,5 @@ public class LevelOneActivity extends AppCompatActivity {
             finish();
             startActivity(intent);
         }
-
-
     }
 }
