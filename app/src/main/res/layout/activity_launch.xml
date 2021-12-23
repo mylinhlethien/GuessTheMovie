@@ -19,7 +19,7 @@
             android:id="@+id/textView"
             android:layout_alignParentTop="true"
             android:gravity="center"
-            android:textColor="@color/teal_700" />
+            android:textColor="@color/rose_dust" />
     </LinearLayout>
 
     <LinearLayout
