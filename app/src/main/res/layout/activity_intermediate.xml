@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:padding= "5dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="2"
-    android:layout_gravity=""
+    android:background="@color/alice_blue"
     tools:context=".IntermediateActivity">
 
     <LinearLayout
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="Release date: "
-            android:textColor="@color/teal_700"
+            android:textColor="@color/rose_dust"
             android:textStyle="bold"
             />
 
@@ -47,7 +47,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:scrollbars = "vertical"
-            android:textColor="@color/teal_700"
+            android:textColor="@color/rose_dust"
             android:text="Overview: "
             android:textStyle="bold"
             />
@@ -107,7 +107,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:text="Actor name 1:"
-                android:textColor="@color/teal_700"
+                android:textColor="@color/rose_dust"
                 android:textStyle="bold"
                 />
 
@@ -120,7 +120,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:text="Actor name 2:"
-                android:textColor="@color/teal_700"
+                android:textColor="@color/rose_dust"
                 android:textStyle="bold"
                 />
 
@@ -160,7 +160,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:text="Character name 1:"
-            android:textColor="@color/teal_700"
+            android:textColor="@color/rose_dust"
             android:textStyle="bold"
             />
 
@@ -172,7 +172,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:text="Character name 2:"
-            android:textColor="@color/teal_700"
+            android:textColor="@color/rose_dust"
             android:textStyle="bold"
             />
 
@@ -218,6 +218,7 @@
             android:layout_marginTop="3dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
+            android:textStyle="bold"
             android:onClick="onButtonClick"/>
 
             <Button
@@ -228,6 +229,7 @@
                 android:layout_marginTop="3dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
+                android:textStyle="bold"
                 android:onClick="onButtonClick"/>
 
         </LinearLayout>
@@ -246,6 +248,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
+            android:textStyle="bold"
             android:onClick="onButtonClick"/>
 
         <Button
@@ -255,13 +258,15 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
+            android:textStyle="bold"
             android:onClick="onButtonClick"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -305,8 +310,9 @@
             android:id="@+id/nextQuestionButtonIntermediateLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/holo_blue_light"
+            android:backgroundTint="@color/rose_dust"
             android:textColor="@android:color/white"
+            android:textStyle="bold"
             android:text="Next question"
             android:layout_marginLeft="107dp"
             android:layout_marginRight="10dp"

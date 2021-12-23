@@ -13,7 +13,8 @@
         android:theme="@style/Theme.GuessTheMovie">
         <activity
             android:name=".ScoreActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.GuessTheMovieNoBar"/>
         <activity
             android:name=".ExpertActivity"
             android:exported="true" />
@@ -25,10 +26,10 @@
             android:exported="true" />
         <activity
             android:name=".LaunchActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.GuessTheMovieNoBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
