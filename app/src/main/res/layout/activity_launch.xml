@@ -7,6 +7,8 @@
     android:background="@color/alice_blue"
     tools:context=".LaunchActivity">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,33 +37,45 @@
             android:src="@drawable/movie_image" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp">
+
+        <TextView
+            android:id="@+id/choseUrLevelLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:text="Choose your level : "
+            android:textColor="@color/rose_dust"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <Spinner
             android:id="@+id/levelDifficulty"
-            android:layout_width="200dp"
+            android:layout_width="150dp"
             android:layout_height="52dp"
-            android:layout_below="@+id/imageView"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginEnd="80dp"
-            android:layout_marginBottom="80dp"
+            android:layout_marginLeft="180dp"
             android:textSize="20sp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
+        <ImageButton
             android:id="@+id/button"
-            android:layout_width="200dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="180dp"
-            android:text="Start"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="290dp"
+            android:background="@drawable/movie"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:onClick="onButtonClick"/>

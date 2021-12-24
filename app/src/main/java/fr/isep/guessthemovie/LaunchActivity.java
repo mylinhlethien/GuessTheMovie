@@ -12,14 +12,12 @@ import android.widget.Spinner;
 public class LaunchActivity extends AppCompatActivity {
 
     Spinner levelDifficulty;
-    ImageView imageView ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
 
-        imageView = findViewById(R.id.imageView);
         levelDifficulty = findViewById(R.id.levelDifficulty);
         String[] dropdownList = {"Beginner", "Intermediate", "Expert"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, dropdownList);
