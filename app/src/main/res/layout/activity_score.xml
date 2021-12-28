@@ -30,8 +30,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:layout_marginLeft="100dp">
+        android:gravity="center_horizontal|center_vertical">
 
         <TextView
             android:layout_width="wrap_content"
@@ -73,11 +72,12 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="100dp">
+        android:gravity="center_horizontal|center_vertical">
 
         <TextView
             android:id="@+id/message"
+            android:text="You need to watch more movies jbkjbhhkbb"
+            android:background="@drawable/round_rect_shape_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/rose_dust"
@@ -92,9 +92,13 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            app:icon="@drawable/returnicon"
+            app:iconSize="40dp"
             android:layout_marginLeft="250dp"
-            android:text="BACK TO MENU"
+            android:text="RETURN TO MENU"
             android:backgroundTint="@color/blue_palette"
+            android:textColor="@color/white"
             android:textSize="15sp"
             android:onClick="onClickBackToMenu"/>
 

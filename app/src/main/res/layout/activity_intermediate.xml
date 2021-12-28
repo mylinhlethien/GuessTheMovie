@@ -308,6 +308,9 @@
 
         <Button
             android:id="@+id/nextQuestionButtonIntermediateLevel"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            app:icon="@drawable/next"
+            app:iconSize="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/rose_dust"
