@@ -30,14 +30,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal|center_vertical">
+        android:gravity="center_horizontal|center_vertical"
+        android:paddingTop="20dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Score:"
             android:textColor="@color/rose_dust"
-            android:textSize="30sp"
+            android:textSize="30dp"
             android:textStyle="bold"/>
 
         <TextView
@@ -45,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:textSize="30sp"
+            android:textSize="30dp"
             android:textColor="@color/rose_dust"
             android:textStyle="bold"/>
 
@@ -54,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="/"
-            android:textSize="30sp"
+            android:textSize="30dp"
             android:textColor="@color/rose_dust"
             android:textStyle="bold"/>
 
@@ -63,29 +64,45 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:textSize="30sp"
+            android:textSize="30dp"
             android:textColor="@color/rose_dust"
             android:textStyle="bold"/>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal|center_vertical">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/movie_image"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:gravity="center_horizontal|center_vertical">
 
         <TextView
             android:id="@+id/message"
-            android:text="You need to watch more movies jbkjbhhkbb"
+            android:text="You need to watch more movies "
             android:background="@drawable/round_rect_shape_title"
-            android:layout_width="wrap_content"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:textColor="@color/rose_dust"
-            android:textSize="35dp"/>
+            android:textSize="30dp"/>
+
+
+
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp">
 
@@ -95,7 +112,7 @@
             style="@style/Widget.MaterialComponents.Button.Icon"
             app:icon="@drawable/returnicon"
             app:iconSize="40dp"
-            android:layout_marginLeft="250dp"
+            android:layout_marginLeft="180dp"
             android:text="RETURN TO MENU"
             android:backgroundTint="@color/blue_palette"
             android:textColor="@color/white"
