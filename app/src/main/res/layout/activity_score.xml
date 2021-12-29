@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:gravity="center_horizontal|center_vertical"
-        android:layout_height="150dp"
+        android:layout_height="160dp"
         android:background="@color/chinese_violet">
 
         <TextView
@@ -24,6 +24,12 @@
             android:text=" End of the game "
             android:textColor="@color/blue_palette"
             android:textSize="40sp" />
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/movie"/>
 
     </LinearLayout>
 
