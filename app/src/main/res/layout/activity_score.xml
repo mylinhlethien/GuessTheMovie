@@ -53,8 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:textSize="30dp"
-            android:textColor="@color/rose_dust"
-            android:textStyle="bold"/>
+            android:textColor="@color/rose_dust"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -62,8 +61,7 @@
             android:layout_marginLeft="10dp"
             android:text="/"
             android:textSize="30dp"
-            android:textColor="@color/rose_dust"
-            android:textStyle="bold"/>
+            android:textColor="@color/rose_dust"/>
 
         <TextView
             android:id="@+id/nbQuestions"
@@ -71,8 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:textSize="30dp"
-            android:textColor="@color/rose_dust"
-            android:textStyle="bold"/>
+            android:textColor="@color/rose_dust"/>
 
     </LinearLayout>
 

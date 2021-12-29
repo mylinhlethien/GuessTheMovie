@@ -317,7 +317,7 @@
             android:textColor="@android:color/white"
             android:textStyle="bold"
             android:text="Next question"
-            android:layout_marginLeft="107dp"
+            android:layout_marginLeft="80dp"
             android:layout_marginRight="10dp"
             android:enabled="false"
             android:onClick="nextQuestionClick"/>

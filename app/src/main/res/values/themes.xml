@@ -12,6 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
         <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/latoregular</item>
+        <item name="fontFamily">@font/latoregular</item>
     </style>
     <style name="Theme.GuessTheMovieNoBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
@@ -25,5 +27,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
         <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/latoregular</item>
+        <item name="fontFamily">@font/latoregular</item>
     </style>
 </resources>
