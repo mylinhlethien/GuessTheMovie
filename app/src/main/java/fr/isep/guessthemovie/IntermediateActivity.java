@@ -112,34 +112,34 @@ public class IntermediateActivity extends AppCompatActivity {
 
         int num;
         for(num=0; num<3;num++){
-                Log.d("random movie answer", String.valueOf(num));
+            Log.d("random movie answer", String.valueOf(num));
 
-                Call<JsonObject> call = movieInterface.getPopularMovies(randomPageNumber + 1);
-                Log.d("call answers options", String.valueOf(call.request().url()));
-                int finalNum = num;
-                call.enqueue(new Callback<JsonObject>() {
-                    @Override
-                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                        JsonObject res = response.body();
-                        JsonElement results = res.get("results");
-                        String answerMovieTitle = results.getAsJsonArray().get(finalNum).getAsJsonObject().get("original_title").getAsString();
-                        Log.d("Answer option movie title", answerMovieTitle);
-                        // display in random button
-                        for (Button b: allButtons){
-                            if (b != correctButtonAnswer && b.getText().toString().isEmpty()){
-                                b.setText(answerMovieTitle);
-                                Log.d("test answer", answerMovieTitle);
-                                break;
-                            }
+            Call<JsonObject> call = movieInterface.getPopularMovies(randomPageNumber + 1);
+            Log.d("call answers options", String.valueOf(call.request().url()));
+            int finalNum = num;
+            call.enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    JsonObject res = response.body();
+                    JsonElement results = res.get("results");
+                    String answerMovieTitle = results.getAsJsonArray().get(finalNum).getAsJsonObject().get("original_title").getAsString();
+                    Log.d("Answer option movie title", answerMovieTitle);
+                    // display in random button
+                    for (Button b: allButtons){
+                        if (b != correctButtonAnswer && b.getText().toString().isEmpty()){
+                            b.setText(answerMovieTitle);
+                            Log.d("test answer", answerMovieTitle);
+                            break;
                         }
                     }
+                }
 
-                    @Override
-                    public void onFailure(Call<JsonObject> call, Throwable t) {
-                        Log.d("failure", String.valueOf(t));
-                    }
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+                    Log.d("failure", String.valueOf(t));
+                }
 
-                });
+            });
         }
 
 
@@ -153,7 +153,7 @@ public class IntermediateActivity extends AppCompatActivity {
         Log.d("random button : ", String.valueOf(randomNumber));
         return randomNumber;
     }
-    
+
     private void getPopularMovies(MovieInterface movieInterface, MovieInterface pictureInterface) {
         // Generate random page number between 1-20
         Random r = new Random();
