@@ -90,6 +90,8 @@
             android:background="@drawable/round_rect_shape_title"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:gravity="center"
             android:textColor="@color/rose_dust"
             android:textSize="30dp"/>
 

@@ -122,7 +122,7 @@ public class IntermediateActivity extends AppCompatActivity {
                 public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                     JsonObject res = response.body();
                     JsonElement results = res.get("results");
-                    String answerMovieTitle = results.getAsJsonArray().get(finalNum).getAsJsonObject().get("original_title").getAsString();
+                    String answerMovieTitle = results.getAsJsonArray().get(finalNum).getAsJsonObject().get("title").getAsString();
                     Log.d("Answer option movie title", answerMovieTitle);
                     // display in random button
                     for (Button b: allButtons){
@@ -206,16 +206,38 @@ public class IntermediateActivity extends AppCompatActivity {
 
                 // check if there are actors in the API
                 if (cast.getAsJsonArray().size() != 0 ) {
-                    String actorName1 = cast.getAsJsonArray().get(0).getAsJsonObject().get("name").getAsString();
-                    String characterName1 = cast.getAsJsonArray().get(0).getAsJsonObject().get("character").getAsString();
+                    //check if there is actor name
+                    if (!cast.getAsJsonArray().get(0).getAsJsonObject().get("name").getAsString().isEmpty()) {
+                        String actorName1 = cast.getAsJsonArray().get(0).getAsJsonObject().get("name").getAsString();
+                        actor1Txt.setText(actorName1);
+                    }
+                    else{
+                        actor1Txt.setText("no actors found");
+                    }
 
-                    String actorName2 = cast.getAsJsonArray().get(1).getAsJsonObject().get("name").getAsString();
-                    String characterName2 = cast.getAsJsonArray().get(1).getAsJsonObject().get("character").getAsString();
+                    if (!cast.getAsJsonArray().get(1).getAsJsonObject().get("name").getAsString().isEmpty()) {
+                        String actorName2 = cast.getAsJsonArray().get(1).getAsJsonObject().get("name").getAsString();
+                        actor2Txt.setText(actorName2);
+                    }
+                    else{
+                        actor2Txt.setText("no actors found");
+                    }
+                    //check if there is character name
+                    if (!cast.getAsJsonArray().get(0).getAsJsonObject().get("character").getAsString().isEmpty()) {
+                        String characterName1 = cast.getAsJsonArray().get(0).getAsJsonObject().get("character").getAsString();
+                        character1Txt.setText(characterName1);
+                    }
+                    else{
+                        character1Txt.setText("no character found");
+                    }
 
-                    actor1Txt.setText(actorName1);
-                    actor2Txt.setText(actorName2);
-                    character1Txt.setText(characterName1);
-                    character2Txt.setText(characterName2);
+                    if (!cast.getAsJsonArray().get(1).getAsJsonObject().get("character").getAsString().isEmpty()) {
+                        String characterName2 = cast.getAsJsonArray().get(1).getAsJsonObject().get("character").getAsString();
+                        character2Txt.setText(characterName2);
+                    }
+                    else{
+                        character2Txt.setText("no character found");
+                    }
 
                     //check if picture path exists for each actor
                     if (!cast.getAsJsonArray().get(0).getAsJsonObject().get("profile_path").isJsonNull()) {
@@ -248,6 +270,8 @@ public class IntermediateActivity extends AppCompatActivity {
                 else {
                     actor1Txt.setText("no actors found");
                     actor2Txt.setText("no actors found");
+                    character1Txt.setText("no character found");
+                    character2Txt.setText("no character found");
                 }
 
             }
@@ -267,11 +291,19 @@ public class IntermediateActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 JsonObject res = response.body();
-                String originalTitle = res.get("original_title").getAsString();
-                String releaseDate = res.get("release_date").getAsString();
+                String originalTitle = res.get("title").getAsString();
+
+                //display release date of the movie
+                if (!res.get("release_date").getAsString().isEmpty() && !res.get("release_date").isJsonNull()) {
+                    String releaseDate = res.get("release_date").getAsString();
+                    releaseDateTxt.setText(String.valueOf(releaseDate));
+                }
+                else {
+                    releaseDateTxt.setText("no release date available");
+                }
 
                 //check if overview not null
-                if (!res.get("overview").isJsonNull()) {
+                if (!res.get("overview").getAsString().isEmpty() && !res.get("overview").isJsonNull()) {
                     String overview = res.get("overview").getAsString();
                     overviewTxt.setText(overview);
                 }
@@ -281,9 +313,6 @@ public class IntermediateActivity extends AppCompatActivity {
 
                 Log.d("title", originalTitle);
                 movieTitleAnswer = originalTitle;
-
-                releaseDateTxt.setText(releaseDate);
-
 
                 correctButtonAnswer.setText(originalTitle);
             }

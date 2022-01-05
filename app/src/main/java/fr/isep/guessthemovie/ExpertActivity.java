@@ -162,7 +162,7 @@ public class ExpertActivity extends AppCompatActivity {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 JsonObject res = response.body();
                 Log.d("res", String.valueOf(res));
-                String originalTitle = res.get("original_title").getAsString();
+                String originalTitle = res.get("title").getAsString();
                 movieTitleAnswer = originalTitle;
 
                 //get movie tagline, check if not JsonNull and not empty
@@ -213,7 +213,7 @@ public class ExpertActivity extends AppCompatActivity {
                 public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                     JsonObject res = response.body();
                     JsonElement results = res.get("results");
-                    String answerMovieTitle = results.getAsJsonArray().get(finalNum).getAsJsonObject().get("original_title").getAsString();
+                    String answerMovieTitle = results.getAsJsonArray().get(finalNum).getAsJsonObject().get("title").getAsString();
                     Log.d("Answer option movie title", answerMovieTitle);
 
                     // display in random button
