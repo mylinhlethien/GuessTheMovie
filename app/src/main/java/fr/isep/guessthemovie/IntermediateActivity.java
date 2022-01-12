@@ -155,10 +155,10 @@ public class IntermediateActivity extends AppCompatActivity {
     }
 
     private void getPopularMovies(MovieInterface movieInterface, MovieInterface pictureInterface) {
-        // Generate random page number between 1-20
+        // Generate random page number between 21-40
         Random r = new Random();
-        int low = 1; //included
-        int high = 21; //not included
+        int low = 21; //included
+        int high = 41; //not included
         int randomPageNumber = r.nextInt(high-low) + low;
 
         // Generate movieId between 0-19
